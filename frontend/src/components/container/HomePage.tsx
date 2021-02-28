@@ -15,10 +15,7 @@ export const HomePage: React.FC = () => {
     if(user.id){
         return (
             <div>
-                <div>{user.id}</div>
-                <div>{user.email}</div>
-                <div>{user.name}</div>
-                <div>{user.password}</div>
+                <div>Welcome Home Page {user.name}</div>
             </div>
         )
     } 

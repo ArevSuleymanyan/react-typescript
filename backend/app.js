@@ -56,7 +56,6 @@ app.use(async (req, res, next) => {
     }
     const userService = new UserService();
     const userInfo = await userService.getUserById(data.id);
-    // console.log(userInfo)
     if (!userInfo) {
         res.status(404).json({
             message: 'Please log in again',

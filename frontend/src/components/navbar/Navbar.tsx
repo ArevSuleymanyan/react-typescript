@@ -12,15 +12,17 @@ export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
 			<div className='menu'>
 				<ul className='menu_list'>
 					{menu.map((item) => {
-						let href= '/'+item.title.toLowerCase()
-						return (
-							
-							<li key={item.id} className='menu_item'>
-								<a className='menu_link' href={href}>
-									{item.title}
-								</a>
-							</li>
-						)
+						let path = item.title.replace(' ', '').toLowerCase()
+						let href = '/' + path;
+						if(item.isLoggedIn){
+							return (
+								<li key={item.id} className='menu_item'>
+									<a className='menu_link' href={href}>
+										{item.title}
+									</a>
+								</li>
+							)
+						}
 					})}
 				</ul>
 			</div>
