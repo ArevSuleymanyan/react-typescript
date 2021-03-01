@@ -5,8 +5,8 @@ import { LoginForm } from './components/container/LoginForm'
 import { RegisterForm } from './components/container/RegisterForm'
 import { About } from './components/container/About'
 import { HomePage } from './components/container/HomePage'
-import { Profile } from './components/loggedInContainer/Profile'
-import { Game } from './components/loggedInContainer/Game'
+import { Profile } from './components/container/Profile'
+import {GameBoard} from './components/gameContainer/GameBoard'
 
 const App: React.FC = () => {
 	const menu = [
@@ -37,7 +37,7 @@ const App: React.FC = () => {
 							<Profile />
 						</Route>
 						<Route path='/game'>
-							<Game />
+							<GameBoard />
 						</Route>
 						<Route path='/logout'>
 							<Redirect to='/' />

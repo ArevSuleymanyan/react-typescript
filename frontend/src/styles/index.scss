@@ -61,3 +61,53 @@ a {
 .container{
 	max-width: 700px;
 }
+
+.board{
+	width: 400px;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+.cell{
+	flex-direction: row;
+	height: 40px;
+	width: 40px;
+	border-radius: 5px;
+	background-color: rgb(235, 232, 232);
+	margin: 1px;
+	cursor: pointer;
+}
+
+.profile-img {
+	width: 150px;
+	height: 200px;
+	border: 1px grey solid;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+
+.add-photo {
+	border: 2px rgb(218, 218, 218) solid;
+	border-radius: 3px;
+	padding: 3px;
+	background-color: lightskyblue;
+	color: white;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.r{
+	background-color: rgb(226, 7, 36);
+}
+.b{
+	background-color: blue;
+}
+.o{
+	background-color: rgb(248, 88, 30);
+}
+.y{
+	background-color: rgb(226, 226, 0);
+}
+.g{
+	background-color: green;
+}
