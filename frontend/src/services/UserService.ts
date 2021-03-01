@@ -3,11 +3,8 @@ export default class UserService {
 		return fetch('http://localhost:3000/api/user').then((response) => response.json())
 	}
 
-	getGameInfo() {}
-
 	login() {}
 
 	register() {}
 
-	addBoard() {}
 }

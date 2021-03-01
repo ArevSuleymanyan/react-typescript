@@ -5,7 +5,7 @@ import { LoginForm } from './components/container/LoginForm'
 import { RegisterForm } from './components/container/RegisterForm'
 import { About } from './components/container/About'
 import { HomePage } from './components/container/HomePage'
-import { Profile } from './components/container/Profile'
+import { Profile } from './components/profileContainer/Profile'
 import {GameBoard} from './components/gameContainer/GameBoard'
 
 const App: React.FC = () => {

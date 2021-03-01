@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { GameCell } from './GameCell'
+import GameService from '../../services/GameService'
 import {board} from './board'
 
+
+const gameService = new GameService()
 export const GameBoard: React.FunctionComponent = () => {
 	let i = 0;
-	// const board = [{color:'r',number:0},{color:'',number:0},{color:'',number:0},{color:'',number:0},{color:'r',number:0}]
+	const [board, setBoard] = useState([]);
+	useEffect(()=>{
+		gameService.getGameInfo().then(result => setBoard(result))
+	},[])
 	return (
 		<div className='board'>
 			{
