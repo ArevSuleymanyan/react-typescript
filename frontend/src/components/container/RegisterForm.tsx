@@ -20,6 +20,9 @@ export const RegisterForm: React.FC = () => {
 	}
 
 	const clickHandler = () => {
+		if(!name || !email || password || confirmPassword){
+			alert('Fill in all fields')
+		}
 		console.log(name, email, password, confirmPassword)
 		setName('')
 		setEmail('')

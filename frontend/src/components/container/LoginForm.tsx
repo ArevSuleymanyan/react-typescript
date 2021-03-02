@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import LocalStorageService from '../../services/LocalStorageService'
 import UserService from '../../services/UserService'
 
 const userService = new UserService()
 
 export const LoginForm: React.FC = () => {
 	const [email, setEmail] = useState<string>('')
+	const [token, setToken] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
+	const [user, setUser] = useState<any>({})
 
 	const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(event.target.value)
@@ -16,20 +19,24 @@ export const LoginForm: React.FC = () => {
 
 	const clickHandler = (event: React.MouseEvent) => {
 		event.preventDefault()
-
 		if (!email || !password) {
 			alert('Please provide an email and password')
 		}
-
-		const user = userService.login(email, password)
-		console.log(user)
-		setEmail('')
-		setPassword('')
+		userService.login(email, password).then(result => {
+			setToken(result.token)
+			setUser(result);
+		})
+		// setEmail('')
+		// setPassword('')
 	}
 
+	LocalStorageService.setToken(token)
 	const keyPressHandler = (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter') {
 			event.preventDefault()
+			if (!email || !password) {
+				alert('Please provide an email and password')
+			}
 			console.log(email, password)
 		}
 	}

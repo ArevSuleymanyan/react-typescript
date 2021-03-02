@@ -37,9 +37,9 @@ app.use(async (req, res, next) => {
         next();
         return;
     }
-    
-    // const token = req.headers['custom-token'];
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjE0MzQxOTAyLCJleHAiOjE2MjIxMTc5MDJ9.6kkpTMOKZvpDV_6BIwlNT3WHGDUCOdp8pBCfoZPX4LY'
+
+    const token = req.headers['custom-token'];
+
     if (!token) {
         res.status(401).json({
             message: 'Key missing',

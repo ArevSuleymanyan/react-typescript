@@ -12,7 +12,7 @@ export default class UserService {
 		return fetch('http://localhost:3000/api/user', requestOption).then((response) => response.json())
 	}
 
-	 login(email: string, password: string) {
+	  login(email: string, password: string) {
 		const requestOption: object = {
 			method: 'POST',
 			headers: {
