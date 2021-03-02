@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { GameCell } from './GameCell'
 import GameService from '../../services/GameService'
-import {board} from './board'
 
 
 const gameService = new GameService()

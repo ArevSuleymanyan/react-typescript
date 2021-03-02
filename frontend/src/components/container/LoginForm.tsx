@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import UserService from '../../services/UserService'
+
+const userService = new UserService()
 
 export const LoginForm: React.FC = () => {
 	const [email, setEmail] = useState<string>('')
@@ -13,10 +16,17 @@ export const LoginForm: React.FC = () => {
 
 	const clickHandler = (event: React.MouseEvent) => {
 		event.preventDefault()
-		console.log(email, password)
+
+		if (!email || !password) {
+			alert('Please provide an email and password')
+		}
+
+		const user = userService.login(email, password)
+		console.log(user)
 		setEmail('')
 		setPassword('')
 	}
+
 	const keyPressHandler = (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter') {
 			event.preventDefault()
@@ -24,7 +34,6 @@ export const LoginForm: React.FC = () => {
 		}
 	}
 	return (
-		
 		<form className='ligin-form'>
 			<div className='mb-3'>
 				<label htmlFor='email' className='form-label'>
@@ -53,7 +62,7 @@ export const LoginForm: React.FC = () => {
 					placeholder='Password'
 				/>
 			</div>
-			<div className="center">
+			<div className='center'>
 				<button onClick={clickHandler} className='btn btn-primary '>
 					Login
 				</button>
