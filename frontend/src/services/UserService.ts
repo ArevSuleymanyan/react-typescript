@@ -12,7 +12,7 @@ export default class UserService {
 		return fetch('http://localhost:3000/api/user', requestOption).then((response) => response.json())
 	}
 
-	  login(email: string, password: string) {
+	login(email: string, password: string) {
 		const requestOption: object = {
 			method: 'POST',
 			headers: {
@@ -23,8 +23,22 @@ export default class UserService {
 				password
 			})
 		}
-		return  fetch('http://localhost:3000/api/login', requestOption).then((response) => response.json())
+		return fetch('http://localhost:3000/api/login', requestOption).then((response) => response.json())
 	}
 
-	register() {}
+	register(name: string, email: string, password: string, confirmPassword: string) {
+		const requestOption: object = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				name,
+				email,
+				password,
+				confirmPassword
+			})
+		}
+		return fetch('http://localhost:3000/api/register', requestOption).then((response) => response.json())
+	}
 }

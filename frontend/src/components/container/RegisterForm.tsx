@@ -23,11 +23,12 @@ export const RegisterForm: React.FC = () => {
 		if(!name || !email || password || confirmPassword){
 			alert('Fill in all fields')
 		}
+		
 		console.log(name, email, password, confirmPassword)
-		setName('')
-		setEmail('')
-		setPassword('')
-		setConfirmPassword('')
+		// setName('')
+		// setEmail('')
+		// setPassword('')
+		// setConfirmPassword('')
 	}
 	const keyPressHandler = (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter') {

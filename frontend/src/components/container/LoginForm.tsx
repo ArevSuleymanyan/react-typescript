@@ -20,24 +20,28 @@ export const LoginForm: React.FC = () => {
 	const clickHandler = (event: React.MouseEvent) => {
 		event.preventDefault()
 		if (!email || !password) {
-			alert('Please provide an email and password')
+			alert('Please provide an email and password');
+			return
 		}
 		userService.login(email, password).then(result => {
 			setToken(result.token)
 			setUser(result);
+			LocalStorageService.setToken(token)
 		})
-		// setEmail('')
-		// setPassword('')
 	}
 
-	LocalStorageService.setToken(token)
 	const keyPressHandler = (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter') {
 			event.preventDefault()
 			if (!email || !password) {
-				alert('Please provide an email and password')
+				alert('Please provide an email and password');
+				return
 			}
-			console.log(email, password)
+			userService.login(email, password).then(result => {
+				setToken(result.token)
+				setUser(result);
+				LocalStorageService.setToken(token)
+			})
 		}
 	}
 	return (
