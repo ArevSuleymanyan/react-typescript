@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import UserService from '../../services/UserService'
+
+const userService = new UserService()
 
 export const RegisterForm: React.FC = () => {
 	const [name, setName] = useState<string>('')
@@ -19,26 +22,29 @@ export const RegisterForm: React.FC = () => {
 		setConfirmPassword(event.target.value)
 	}
 
-	const clickHandler = (event:React.MouseEvent) => {
-		if(!name || !email || !password || !confirmPassword){
-			alert('Fill in all fields')
-		}
+	const clickHandler = async (event: React.MouseEvent) => {
 		event.preventDefault()
-		console.log(name, email, password, confirmPassword);
+		if (!name || !email || !password || !confirmPassword) {
+			alert('Fill in all fields')
+			return
+		}
+		const message = await userService.register(name, email, password, confirmPassword)
+		console.log(message)
 		setName('')
 		setEmail('')
 		setPassword('')
 		setConfirmPassword('')
 	}
-	const keyPressHandler = (event: React.KeyboardEvent) => {
-		// if (event.key === 'Enter') {
-		// 	event.preventDefault()
-		// 	console.log(name, email, password, confirmPassword)
-		// 	setName('')
-		// 	setEmail('')
-		// 	setPassword('')
-		// 	setConfirmPassword('')
-		// }
+	const keyPressHandler = async (event: React.KeyboardEvent) => {
+		if (event.key === 'Enter') {
+			event.preventDefault()
+			const message = await userService.register(name, email, password, confirmPassword)
+			console.log(message)
+			setName('')
+			setEmail('')
+			setPassword('')
+			setConfirmPassword('')
+		}
 	}
 
 	let namePlc = 'The name must be a minimum of 4 characters long and not start with a number.'
@@ -46,8 +52,7 @@ export const RegisterForm: React.FC = () => {
 	let passwordPlc = 'The password must be a minimum of four characters long.'
 	let confirmPassPlc = 'Please confirm the password.'
 	return (
-		
-		<form className='ligin-form'>
+		<form className='login-form'>
 			<div className='mb-3'>
 				<label htmlFor='name' className='form-label'>
 					Name
