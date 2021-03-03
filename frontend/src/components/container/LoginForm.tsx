@@ -6,9 +6,8 @@ const userService = new UserService()
 
 export const LoginForm: React.FC = () => {
 	const [email, setEmail] = useState<string>('')
-	const [token, setToken] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
-	const [user, setUser] = useState<any>({})
+	// const [user, setUser] = useState<string>('')
 
 	const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(event.target.value)
@@ -17,32 +16,27 @@ export const LoginForm: React.FC = () => {
 		setPassword(event.target.value)
 	}
 
-	const clickHandler = (event: React.MouseEvent) => {
+	const clickHandler =  async (event: React.MouseEvent) => {
 		event.preventDefault()
 		if (!email || !password) {
 			alert('Please provide an email and password');
 			return
 		}
-		userService.login(email, password).then(result => {
-			setToken(result.token)
-			setUser(result);
-			LocalStorageService.setToken(token)
-		})
+		// userService.login(email, password).then(result => {
+		// 	setUser(result);
+		// });
+
+		const user = await userService.login(email, password);
+		console.log(user)
 	}
 
 	const keyPressHandler = (event: React.KeyboardEvent) => {
-		if (event.key === 'Enter') {
-			event.preventDefault()
-			if (!email || !password) {
-				alert('Please provide an email and password');
-				return
-			}
-			userService.login(email, password).then(result => {
-				setToken(result.token)
-				setUser(result);
-				LocalStorageService.setToken(token)
-			})
-		}
+	// 	if (event.key === 'Enter') {
+	// 		event.preventDefault()
+	// 		if (!email || !password) {
+	// 			alert('Please provide an email and password');
+	// 		}
+	// 	}
 	}
 	return (
 		<form className='ligin-form'>
@@ -64,7 +58,7 @@ export const LoginForm: React.FC = () => {
 					Password
 				</label>
 				<input
-					className='form-control'
+					className={'form-control'}
 					id='password'
 					type='password'
 					value={password}

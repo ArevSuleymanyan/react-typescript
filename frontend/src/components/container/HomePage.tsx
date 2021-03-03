@@ -5,7 +5,6 @@ const userService = new UserService()
 
 export const HomePage: React.FC = () => {
 	const [user, setUser] = useState<any>({})
-    
 	useEffect(() => {
 		userService.getUserInfo().then(result => setUser(result))
 	}, [])

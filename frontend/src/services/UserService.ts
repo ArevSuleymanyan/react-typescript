@@ -27,18 +27,18 @@ export default class UserService {
 	}
 
 	register(name: string, email: string, password: string, confirmPassword: string) {
-		const requestOption: object = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				name,
-				email,
-				password,
-				confirmPassword
-			})
-		}
-		return fetch('http://localhost:3000/api/register', requestOption).then((response) => response.json())
+		// const requestOption: object = {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		'Content-Type': 'application/json'
+		// 	},
+		// 	body: JSON.stringify({
+		// 		name,
+		// 		email,
+		// 		password,
+		// 		confirmPassword
+		// 	})
+		// }
+		// return fetch('http://localhost:3000/api/register', requestOption).then((response) => response.json())
 	}
 }

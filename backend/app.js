@@ -33,20 +33,19 @@ app.use(async (req, res, next) => {
     const foundUrl = allow.find((el) =>
         new RegExp(`${el}\/?$`, 'gm').test(req.url)
     );
+
     if (foundUrl) {
         next();
         return;
     }
 
     const token = req.headers['custom-token'];
-
-    if (!token) {
+    if (token === 'null') {
         res.status(401).json({
             message: 'Key missing',
         });
         return;
     }
-
     const data = jwt.verify(token, 'secret');
     if (!data) {
         res.status(404).json({

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom'
 import { Navbar } from './components/navbar/Navbar'
 import { LoginForm } from './components/container/LoginForm'
@@ -7,6 +7,9 @@ import { About } from './components/container/About'
 import { HomePage } from './components/container/HomePage'
 import { Profile } from './components/profileContainer/Profile'
 import {GameBoard} from './components/gameContainer/GameBoard'
+
+
+
 
 const App: React.FC = () => {
 	const menu = [
