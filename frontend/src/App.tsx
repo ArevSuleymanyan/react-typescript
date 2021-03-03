@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom'
 import { Navbar } from './components/navbar/Navbar'
-import { LoginForm } from './components/container/LoginForm'
-import { RegisterForm } from './components/container/RegisterForm'
-import { About } from './components/container/About'
-import { HomePage } from './components/container/HomePage'
-import { Profile } from './components/profileContainer/Profile'
-import {GameBoard} from './components/gameContainer/GameBoard'
+import { LoginForm } from './components/pages/LoginForm'
+import { RegisterForm } from './components/pages/RegisterForm'
+import { About } from './components/pages/About'
+import { HomePage } from './components/pages/HomePage'
+import { Profile } from './components/profile/Profile'
+import {GameBoard} from './components/game/GameBoard'
 
 
 

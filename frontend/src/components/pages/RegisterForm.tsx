@@ -19,26 +19,26 @@ export const RegisterForm: React.FC = () => {
 		setConfirmPassword(event.target.value)
 	}
 
-	const clickHandler = () => {
-		if(!name || !email || password || confirmPassword){
+	const clickHandler = (event:React.MouseEvent) => {
+		if(!name || !email || !password || !confirmPassword){
 			alert('Fill in all fields')
 		}
-		
-		console.log(name, email, password, confirmPassword)
-		// setName('')
-		// setEmail('')
-		// setPassword('')
-		// setConfirmPassword('')
+		event.preventDefault()
+		console.log(name, email, password, confirmPassword);
+		setName('')
+		setEmail('')
+		setPassword('')
+		setConfirmPassword('')
 	}
 	const keyPressHandler = (event: React.KeyboardEvent) => {
-		if (event.key === 'Enter') {
-			event.preventDefault()
-			console.log(name, email, password, confirmPassword)
-			setName('')
-			setEmail('')
-			setPassword('')
-			setConfirmPassword('')
-		}
+		// if (event.key === 'Enter') {
+		// 	event.preventDefault()
+		// 	console.log(name, email, password, confirmPassword)
+		// 	setName('')
+		// 	setEmail('')
+		// 	setPassword('')
+		// 	setConfirmPassword('')
+		// }
 	}
 
 	let namePlc = 'The name must be a minimum of 4 characters long and not start with a number.'
