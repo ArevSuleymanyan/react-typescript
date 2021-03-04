@@ -8,7 +8,7 @@ import { HomePage } from './components/pages/HomePage'
 import { Profile } from './components/profile/Profile'
 import { GameBoard } from './components/game/GameBoard'
 import { AlertProvider } from './context/AlertContext'
-import { UserContextProvider } from './context/UserContext'
+// import { UserContextProvider } from './context/UserContext'
 
 const App: React.FC = () => {
 	const menu = [
@@ -22,7 +22,6 @@ const App: React.FC = () => {
 	
 
 	return (
-		<UserContextProvider>
 			<AlertProvider>
 				<Router>
 					<>
@@ -55,7 +54,6 @@ const App: React.FC = () => {
 					</>
 				</Router>
 			</AlertProvider>
-		</UserContextProvider>
 	)
 }
 
