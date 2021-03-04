@@ -10,8 +10,9 @@ export const RegisterForm: React.FC = () => {
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
 	const [confirmPassword, setConfirmPassword] = useState<string>('')
-	const { visible, toggle }: any = useAlert()
 	const [message, setMesage] = useState<string>('')
+	const { visible, toggle }: any = useAlert()
+
 
 	const nameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setName(event.target.value)

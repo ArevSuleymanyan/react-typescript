@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom'
 import { Navbar } from './components/navbar/Navbar'
 import { LoginForm } from './components/pages/LoginForm'
@@ -8,8 +8,7 @@ import { HomePage } from './components/pages/HomePage'
 import { Profile } from './components/profile/Profile'
 import { GameBoard } from './components/game/GameBoard'
 import { AlertProvider } from './context/AlertContext'
-
-
+import { UserContextProvider } from './context/UserContext'
 
 const App: React.FC = () => {
 	const menu = [
@@ -21,15 +20,17 @@ const App: React.FC = () => {
 		{ title: 'LOG OUT', id: 6, isLoggedIn: true }
 	]
 	
+
 	return (
-		<AlertProvider>
+		<UserContextProvider>
+			<AlertProvider>
 				<Router>
 					<>
 						<Navbar menu={menu} />
 						<div className='container'>
 							<Switch>
 								<Route path='/login'>
-									 <LoginForm /> 
+									<LoginForm />
 								</Route>
 								<Route path='/register'>
 									<RegisterForm />
@@ -38,7 +39,7 @@ const App: React.FC = () => {
 									<About />
 								</Route>
 								<Route path='/profile'>
-									<Profile />  
+									<Profile />
 								</Route>
 								<Route path='/game'>
 									<GameBoard />
@@ -53,7 +54,8 @@ const App: React.FC = () => {
 						</div>
 					</>
 				</Router>
-		</AlertProvider>
+			</AlertProvider>
+		</UserContextProvider>
 	)
 }
 

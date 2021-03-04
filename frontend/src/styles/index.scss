@@ -112,3 +112,9 @@ a {
 .g{
 	background-color: green;
 }
+.alert{
+	cursor: pointer;
+}
+.alert:hover {
+	border: 2px solid rgb(13, 143, 175);
+}

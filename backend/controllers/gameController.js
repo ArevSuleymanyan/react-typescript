@@ -12,8 +12,6 @@ async function addBoard(req, res) {
     return res.json({
         user: req.userInfo,
         message: 'Game saved!',
-        token: '',
-        game: board,
     });
 }
 

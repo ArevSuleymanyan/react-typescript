@@ -3,6 +3,7 @@ import LocalStorageService from '../../services/LocalStorageService'
 import UserService from '../../services/UserService'
 import { Alert } from './Alert'
 import { useAlert } from '../../context/AlertContext'
+import { Redirect, useHistory } from 'react-router-dom'
 
 const userService = new UserService()
 
@@ -11,6 +12,7 @@ export const LoginForm: React.FC = () => {
 	const [password, setPassword] = useState<string>('')
 	const [message, setMessage] = useState<string>('')
 	const { visible, toggle }: any = useAlert()
+	let history = useHistory()
 
 	const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(event.target.value)
@@ -32,6 +34,7 @@ export const LoginForm: React.FC = () => {
 		const user = await userService.login(email, password)
 		if (user.token) {
 			LocalStorageService.setToken(user.token)
+			history.push('/')
 		} else {
 			if (!visible) {
 				setMessage(user.message)
@@ -54,6 +57,7 @@ export const LoginForm: React.FC = () => {
 			const user = await userService.login(email, password)
 			if (user.token) {
 				LocalStorageService.setToken(user.token)
+				history.push('/')
 			} else {
 				if (!visible) {
 					setMessage(user.message)

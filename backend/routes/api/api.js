@@ -10,8 +10,10 @@ router.post('/login', login);
 router.post('/register', register);
 router.post('/board', addBoard);
 
-router.get('/user', (req, res) => {
-    res.json({ user: req.userInfo });
+router.get('/user', async (req, res) => {
+    let id = req.userInfo.id;
+    let game = await gameService.getGameById(id);
+    res.json({user:req.userInfo, game: game.lines_98});
 });
 
 router.get('/game', async (req, res) => {
