@@ -5,7 +5,10 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
-	const token = LocalStorageService.getToken('token')
+	const token = LocalStorageService.getToken('token');
+	const logoutHandler = () => {
+		LocalStorageService.removeToken('token')
+	}
 	return (
 		<nav className='navbar'>
 			<div>
@@ -17,6 +20,15 @@ export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
 						let path = item.title.replace(' ', '').toLowerCase()
 						let href = '/' + path
 						if (token && item.isLoggedIn) {
+							if(item.title === 'LOG OUT'){
+								return (
+									<li key={item.id} className='menu_item' onClick={logoutHandler}>
+										<a className='menu_link' href={href}>
+											{item.title}
+										</a>
+									</li>
+								)
+							}
 							return (
 								<li key={item.id} className='menu_item'>
 									<a className='menu_link' href={href}>

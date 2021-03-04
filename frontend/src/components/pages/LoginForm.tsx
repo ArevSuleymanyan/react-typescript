@@ -1,15 +1,16 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import LocalStorageService from '../../services/LocalStorageService'
 import UserService from '../../services/UserService'
-import { Alert } from '../../Alert/Alert'
-import { useAlert } from '../../Alert/AlertContext'
+import { Alert } from './Alert'
+import { useAlert } from '../../context/AlertContext'
 
 const userService = new UserService()
 
 export const LoginForm: React.FC = () => {
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
-	const {toggle}:any = useAlert()
+	const [message, setMessage] = useState<string>('')
+	const { visible, toggle }: any = useAlert()
 
 	const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(event.target.value)
@@ -21,25 +22,45 @@ export const LoginForm: React.FC = () => {
 	const clickHandler = async (event: React.MouseEvent) => {
 		event.preventDefault()
 		if (!email || !password) {
-			// alert('Please provide an email and password')
-			toggle()
+			if (!visible) {
+				setMessage('Please provide an email and password')
+				toggle()
+			}
 			return
 		}
 
 		const user = await userService.login(email, password)
-		console.log(user)
-		LocalStorageService.setToken(user.token)
+		if (user.token) {
+			LocalStorageService.setToken(user.token)
+		} else {
+			if (!visible) {
+				setMessage(user.message)
+				toggle()
+			}
+			return
+		}
 	}
 
 	const keyPressHandler = async (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter') {
 			event.preventDefault()
 			if (!email || !password) {
-				alert('Please provide an email and password')
+				if (!visible) {
+					setMessage('Please provide an email and password')
+					toggle()
+				}
+				return
 			}
 			const user = await userService.login(email, password)
-			console.log(user)
-			LocalStorageService.setToken(user.token)
+			if (user.token) {
+				LocalStorageService.setToken(user.token)
+			} else {
+				if (!visible) {
+					setMessage(user.message)
+					toggle()
+				}
+				return
+			}
 		}
 	}
 	return (
@@ -78,7 +99,7 @@ export const LoginForm: React.FC = () => {
 					</button>
 				</div>
 			</form>
-			<Alert  />
+			<Alert message={message} />
 		</>
 	)
 }

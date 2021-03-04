@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom'
 import { Navbar } from './components/navbar/Navbar'
 import { LoginForm } from './components/pages/LoginForm'
@@ -7,7 +7,9 @@ import { About } from './components/pages/About'
 import { HomePage } from './components/pages/HomePage'
 import { Profile } from './components/profile/Profile'
 import { GameBoard } from './components/game/GameBoard'
-import { AlertProvider } from './Alert/AlertContext'
+import { AlertProvider } from './context/AlertContext'
+
+
 
 const App: React.FC = () => {
 	const menu = [
@@ -18,38 +20,39 @@ const App: React.FC = () => {
 		{ title: 'GAME', id: 5, isLoggedIn: true },
 		{ title: 'LOG OUT', id: 6, isLoggedIn: true }
 	]
+	
 	return (
 		<AlertProvider>
-			<Router>
-				<>
-					<Navbar menu={menu} />
-					<div className='container'>
-						<Switch>
-							<Route path='/login'>
-								<LoginForm  />
-							</Route>
-							<Route path='/register'>
-								<RegisterForm />
-							</Route>
-							<Route path='/about'>
-								<About />
-							</Route>
-							<Route path='/profile'>
-								<Profile />
-							</Route>
-							<Route path='/game'>
-								<GameBoard />
-							</Route>
-							<Route path='/logout'>
-								<Redirect to='/' />
-							</Route>
-							<Route path='/'>
-								<HomePage />
-							</Route>
-						</Switch>
-					</div>
-				</>
-			</Router>
+				<Router>
+					<>
+						<Navbar menu={menu} />
+						<div className='container'>
+							<Switch>
+								<Route path='/login'>
+									 <LoginForm /> 
+								</Route>
+								<Route path='/register'>
+									<RegisterForm />
+								</Route>
+								<Route path='/about'>
+									<About />
+								</Route>
+								<Route path='/profile'>
+									<Profile />  
+								</Route>
+								<Route path='/game'>
+									<GameBoard />
+								</Route>
+								<Route path='/logout'>
+									<Redirect to='/' />
+								</Route>
+								<Route path='/'>
+									<HomePage />
+								</Route>
+							</Switch>
+						</div>
+					</>
+				</Router>
 		</AlertProvider>
 	)
 }
