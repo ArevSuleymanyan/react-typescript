@@ -10,7 +10,10 @@ async function addBoard(req, res) {
     const id = req.body.id;
     await gameService.updateGame(id, board);
     return res.json({
+        user: req.userInfo,
         message: 'Game saved!',
+        token: '',
+        game: board,
     });
 }
 

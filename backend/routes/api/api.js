@@ -1,18 +1,17 @@
 import { Router } from 'express';
 import { addBoard } from '../../controllers/gameController.js';
-import { login, register } from '../../controllers/authController.js'
+import { login, register } from '../../controllers/authController.js';
 import GameService from '../../services/GameService.js';
-
 
 const router = new Router();
 const gameService = new GameService();
 
 router.post('/login', login);
 router.post('/register', register);
-router.post('/board', addBoard)
+router.post('/board', addBoard);
 
 router.get('/user', (req, res) => {
-    res.json(req.userInfo);
+    res.json({ user: req.userInfo });
 });
 
 router.get('/game', async (req, res) => {
@@ -21,6 +20,6 @@ router.get('/game', async (req, res) => {
     res.json(game.lines_98);
 });
 
-
-
 export default router;
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDYsImlhdCI6MTYxNDg1NzQ5NSwiZXhwIjoxNjIyNjMzNDk1fQ.NcPZ87NP2j_-Rcqiajj-hGMcaYo_BuM1Fzlp2IXtMhk
