@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
+import { GameContext } from '../../context/GameContext'
 import { GameCell } from './GameCell'
-import GameService from '../../services/GameService'
+import { TopPlayers } from './TopPlayers'
 
-
-const gameService = new GameService()
 export const GameBoard: React.FunctionComponent = () => {
-	let i = 0;
-	const [board, setBoard] = useState([]);
-	useEffect(()=>{
-		// gameService.getGameInfo().then(result => setBoard(result))
-		const getGameBoard = async () => await gameService.getGameInfo().then(result => setBoard(result))
-		getGameBoard()
-	},[])
+	let i = 0
+	const board = useContext(GameContext)
 	return (
-		<div className='board'>
-			{
-				board.map((item) => {
+		<>
+			<TopPlayers />
+			<div className='board'>
+				{board.map((item) => {
 					i++
-					return (
-						<GameCell key={i} item={item}/>
-					)
-				})
-			}
-		</div>
+					return <GameCell key={i} item={item} />
+				})}
+			</div>
+		</>
 	)
 }

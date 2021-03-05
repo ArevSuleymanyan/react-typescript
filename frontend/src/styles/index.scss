@@ -81,7 +81,7 @@ a {
 	height: 40px;
 	width: 40px;
 	border-radius: 5px;
-	background-color: rgb(235, 232, 232);
+	background-color: rgb(255, 255, 255);
 	margin: 1px;
 	cursor: pointer;
 }
@@ -102,6 +102,7 @@ a {
 	color: white;
 	font-weight: bold;
 	margin-bottom: 20px;
+	
 }
 
 .r {
@@ -139,3 +140,32 @@ a {
 	border-color: rgb(13, 143, 175);
 	font-weight: bold;
 }
+
+.top-players {
+	text-align: center;
+	margin-bottom: 20px;
+}
+.top-table{
+	display: inline-block;
+	margin-top: 10px;
+	border-bottom: grey 1px solid;
+	border-radius: 5px;
+	box-shadow: 0px 0px 15px 2px rgba(141, 156, 165, 0.75);
+}
+.top-title{
+	cursor: pointer;
+	border: #7036dbd5 1px solid;
+	border-radius: 8px;
+	padding: 5px 10px;
+	font-weight: bold;
+	color: aliceblue;
+	background: linear-gradient(270deg, rgba(180,58,164,1) 0%, rgba(1,109,186,1) 100%);
+	box-shadow: 0px 0px 15px 2px rgba(0,125,199,0.75);
+}
+
+.heading ,.sqr{
+	padding: 3px 5px;
+	font-weight: bolder;
+}
+
+ 

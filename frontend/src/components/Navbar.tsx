@@ -6,7 +6,6 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
-	const token = LocalStorageService.getToken('token');
 	const user:any = useContext(UserContext);
 
 	const logoutHandler = () => {
@@ -22,7 +21,6 @@ export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
 					{menu.map((item) => {
 						let path = item.title.replace(' ', '').toLowerCase()
 						let href = '/' + path
-						// if (token && item.isLoggedIn) {
 						if (user.id && item.isLoggedIn) {
 							if(item.title === 'LOG OUT'){
 								return (

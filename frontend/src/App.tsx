@@ -9,6 +9,7 @@ import { Profile } from './components/Profile'
 import { GameBoard } from './components/game/GameBoard'
 import { AlertProvider } from './context/AlertContext'
 import { UserContext } from './context/UserContext'
+import { GameProvider } from './context/GameContext'
 
 const App: React.FC = () => {
 	const user = useContext(UserContext);
@@ -20,8 +21,10 @@ const App: React.FC = () => {
 		{ title: 'GAME', id: 5, isLoggedIn: true },
 		{ title: 'LOG OUT', id: 6, isLoggedIn: true }
 	]
+	// currentMenu = menu.filter
 
 	return (
+		<GameProvider>
 		<AlertProvider>
 			<Router>
 				<Navbar menu={menu} />
@@ -52,6 +55,7 @@ const App: React.FC = () => {
 				</div>
 			</Router>
 		</AlertProvider>
+		</GameProvider>
 	)
 }
 
