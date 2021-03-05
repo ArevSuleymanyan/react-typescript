@@ -8,7 +8,6 @@ import { HomePage } from './components/pages/HomePage'
 import { Profile } from './components/profile/Profile'
 import { GameBoard } from './components/game/GameBoard'
 import { AlertProvider } from './context/AlertContext'
-// import { UserContextProvider } from './context/UserContext'
 
 const App: React.FC = () => {
 	const menu = [
@@ -19,41 +18,38 @@ const App: React.FC = () => {
 		{ title: 'GAME', id: 5, isLoggedIn: true },
 		{ title: 'LOG OUT', id: 6, isLoggedIn: true }
 	]
-	
 
 	return (
-			<AlertProvider>
-				<Router>
-					<>
-						<Navbar menu={menu} />
-						<div className='container'>
-							<Switch>
-								<Route path='/login'>
-									<LoginForm />
-								</Route>
-								<Route path='/register'>
-									<RegisterForm />
-								</Route>
-								<Route path='/about'>
-									<About />
-								</Route>
-								<Route path='/profile'>
-									<Profile />
-								</Route>
-								<Route path='/game'>
-									<GameBoard />
-								</Route>
-								<Route path='/logout'>
-									<Redirect to='/' />
-								</Route>
-								<Route path='/'>
-									<HomePage />
-								</Route>
-							</Switch>
-						</div>
-					</>
-				</Router>
-			</AlertProvider>
+		<AlertProvider>
+			<Router>
+				<Navbar menu={menu} />
+				<div className='container'>
+					<Switch>
+						<Route path='/login'>
+							<LoginForm />
+						</Route>
+						<Route path='/register'>
+							<RegisterForm />
+						</Route>
+						<Route path='/about'>
+							<About />
+						</Route>
+						<Route path='/profile'>
+							<Profile />
+						</Route>
+						<Route path='/game'>
+							<GameBoard />
+						</Route>
+						<Route path='/logout'>
+							<Redirect to='/' />
+						</Route>
+						<Route path='/'>
+							<HomePage />
+						</Route>
+					</Switch>
+				</div>
+			</Router>
+		</AlertProvider>
 	)
 }
 

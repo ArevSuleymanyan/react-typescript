@@ -8,7 +8,9 @@ export const GameBoard: React.FunctionComponent = () => {
 	let i = 0;
 	const [board, setBoard] = useState([]);
 	useEffect(()=>{
-		gameService.getGameInfo().then(result => setBoard(result))
+		// gameService.getGameInfo().then(result => setBoard(result))
+		const getGameBoard = async () => await gameService.getGameInfo().then(result => setBoard(result))
+		getGameBoard()
 	},[])
 	return (
 		<div className='board'>
