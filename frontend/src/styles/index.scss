@@ -123,7 +123,8 @@ a {
 	cursor: pointer;
 }
 .alert:hover {
-	border: 2px solid rgb(13, 143, 175);
+	border: 2px solid rgb(89, 208, 238);
+	transition: 0.7s linear;
 }
 
 .guest {
@@ -131,4 +132,10 @@ a {
 	font-weight: bold;
 	font-size: 30px;
 	color: rgb(13, 143, 175);
+}
+
+.btn-primary {
+	background-color: rgb(13, 143, 175);
+	border-color: rgb(13, 143, 175);
+	font-weight: bold;
 }

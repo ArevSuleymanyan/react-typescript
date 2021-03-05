@@ -1,6 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
+import { useHistory } from 'react-router-dom'
 
 export const About: React.FC = () => {
+	let history = useHistory();
+	const clickHandler = () => {
+		history.push('/')
+	}
 	return (
 		<div className='about '>
 			<div className='about-content'>
@@ -12,7 +17,7 @@ export const About: React.FC = () => {
 				</p>
 			</div>
 			<div className='center'>
-				<button className='btn btn-secondary'>Home</button>
+				<button className='btn btn-primary ' onClick={clickHandler}>LINES</button>
 			</div>
 		</div>
 	)
