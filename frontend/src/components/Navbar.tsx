@@ -1,11 +1,14 @@
-import React from 'react';
-import LocalStorageService from '../../services/LocalStorageService'
+import React, { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
+import LocalStorageService from '../services/LocalStorageService'
 interface NavbarProps {
 	menu: any[]
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
 	const token = LocalStorageService.getToken('token');
+	const user:any = useContext(UserContext);
+
 	const logoutHandler = () => {
 		LocalStorageService.removeToken('token')
 	}
@@ -19,7 +22,8 @@ export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
 					{menu.map((item) => {
 						let path = item.title.replace(' ', '').toLowerCase()
 						let href = '/' + path
-						if (token && item.isLoggedIn) {
+						// if (token && item.isLoggedIn) {
+						if (user.id && item.isLoggedIn) {
 							if(item.title === 'LOG OUT'){
 								return (
 									<li key={item.id} className='menu_item' onClick={logoutHandler}>
@@ -37,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
 								</li>
 							)
 						}
-						if(!token && !item.isLoggedIn){
+						if(!user.id && !item.isLoggedIn){
 							return (
 								<li key={item.id} className='menu_item'>
 									<a className='menu_link' href={href}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import LocalStorageService from '../../services/LocalStorageService'
 import UserService from '../../services/UserService'
-import { Alert } from './Alert'
+import { Alert } from '../Alert'
 import { useAlert } from '../../context/AlertContext'
 import { Redirect, useHistory } from 'react-router-dom'
 

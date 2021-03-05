@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import UserService from '../../services/UserService'
-
-const userService = new UserService()
+import React, { useContext } from 'react'
+import { UserContext } from '../../context/UserContext'
 
 export const HomePage: React.FC = () => {
-	const [user, setUser] = useState<any>({})
-	useEffect(() => {
-		// userService.getUserInfo().then(result => setUser(result))
-	const userInfo = async() =>	await userService.getUserInfo().then(result => setUser(result))
-        userInfo();
-	}, [])
-    if(user.id){
-        return (
-            <div>
-                <div>Welcome Home Page {user.name}</div>
-            </div>
-        )
-    } 
-	return <div className="guest">Pleace log in</div>
+	const user: any = useContext(UserContext)
+	if (user.id) {
+		return (
+			<div>
+				<div className="guest">Welcome Home Page {user.name}</div>
+			</div>
+		)
+	}
+	return <div className='guest'>Pleace log in</div>
 }

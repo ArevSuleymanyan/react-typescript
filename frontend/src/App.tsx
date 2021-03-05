@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom'
-import { Navbar } from './components/navbar/Navbar'
+import { Navbar } from './components/Navbar'
 import { LoginForm } from './components/pages/LoginForm'
 import { RegisterForm } from './components/pages/RegisterForm'
 import { About } from './components/pages/About'
 import { HomePage } from './components/pages/HomePage'
-import { Profile } from './components/profile/Profile'
+import { Profile } from './components/Profile'
 import { GameBoard } from './components/game/GameBoard'
 import { AlertProvider } from './context/AlertContext'
+import { UserContext } from './context/UserContext'
 
 const App: React.FC = () => {
+	const user = useContext(UserContext);
 	const menu = [
 		{ title: 'LOGIN', id: 1, isLoggedIn: false },
 		{ title: 'REGISTER', id: 2, isLoggedIn: false },

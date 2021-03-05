@@ -6,6 +6,8 @@ export const About: React.FC = () => {
 	const clickHandler = () => {
 		history.push('/')
 	}
+	
+
 	return (
 		<div className='about '>
 			<div className='about-content'>

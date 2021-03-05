@@ -1,9 +1,10 @@
 import React from 'react'
-import { useAlert } from '../../context/AlertContext'
+import { useAlert } from '../context/AlertContext'
+
+
 
 export const Alert: React.FC = (props:any) => {
 	const alert:any = useAlert()
-
 	if (!alert.visible) return null
 
 	return (
