@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom'
 import { Navbar } from './components/Navbar'
-import { LoginForm } from './components/pages/LoginPage'
-import { RegisterForm } from './components/pages/RegisterPage'
+import { LoginPage } from './components/pages/LoginPage'
+import { RegisterPage } from './components/pages/RegisterPage'
 import { About } from './components/pages/About'
 import { HomePage } from './components/pages/HomePage'
 import { Profile } from './components/Profile'
@@ -12,49 +12,36 @@ import { UserContext } from './context/UserContext'
 import { GameProvider } from './context/GameContext'
 
 const App: React.FC = () => {
-	const user = useContext(UserContext);
-	const menu = [
-		{ title: 'LOGIN', id: 1, isLoggedIn: false },
-		{ title: 'REGISTER', id: 2, isLoggedIn: false },
-		{ title: 'ABOUT', id: 3, isLoggedIn: false },
-		{ title: 'PROFILE', id: 4, isLoggedIn: true },
-		{ title: 'GAME', id: 5, isLoggedIn: true },
-		{ title: 'LOG OUT', id: 6, isLoggedIn: true }
-	]
-	// currentMenu = menu.filter
+	const { user }: any = useContext(UserContext)
 
+	const menu = [
+		{ title: 'LOGIN', id: 2, isLoggedIn: false, component: LoginPage, path: '/login' },
+		{ title: 'REGISTER', id: 3, isLoggedIn: false, component: RegisterPage, path: '/register' },
+		{ title: 'ABOUT', id: 4, isLoggedIn: false, component: About, path: '/about' },
+		{ title: 'PROFILE', id: 5, isLoggedIn: true, component: Profile, path: '/profile' },
+		{ title: 'GAME', id: 6, isLoggedIn: true, component: GameBoard, path: '/game' },
+		{ title: 'LOG OUT', id: 7, isLoggedIn: true, component: '', path: '/logout' }
+	]
+
+	const currentMenu = menu.filter((item) => {
+		if (user && user.id) {
+			return item.isLoggedIn && item
+		} else {
+			return !item.isLoggedIn && item
+		}
+	})
 	return (
 		<GameProvider>
-		<AlertProvider>
-			<Router>
-				<Navbar menu={menu} />
-				<div className='container'>
-					<Switch>
-						<Route path='/login'>
-							<LoginForm />
-						</Route>
-						<Route path='/register'>
-							<RegisterForm />
-						</Route>
-						<Route path='/about'>
-							<About />
-						</Route>
-						<Route path='/profile'>
-							<Profile />
-						</Route>
-						<Route path='/game'>
-							<GameBoard />
-						</Route>
-						<Route path='/logout'>
-							<Redirect to='/' />
-						</Route>
-						<Route path='/'>
-							<HomePage />
-						</Route>
-					</Switch>
-				</div>
-			</Router>
-		</AlertProvider>
+			<AlertProvider>
+				<Router>
+					<Navbar menu={currentMenu} />
+					<div className='container'>
+						{currentMenu.map((item) => {
+							return <Route key={item.id} path={item.path} component={item.component} />
+						})}
+					</div>
+				</Router>
+			</AlertProvider>
 		</GameProvider>
 	)
 }

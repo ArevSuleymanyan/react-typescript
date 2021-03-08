@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { UserContext } from '../../context/UserContext'
 
 export const HomePage: React.FC = () => {
-	const user: any = useContext(UserContext)
+	const {user}: any = useContext(UserContext)
 	if (user.id) {
 		return (
 			<div>

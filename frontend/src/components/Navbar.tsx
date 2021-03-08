@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../context/UserContext';
+import React, { useContext } from 'react'
+import { useHistory } from 'react-router'
 import LocalStorageService from '../services/LocalStorageService'
 interface NavbarProps {
 	menu: any[]
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
-	const user:any = useContext(UserContext);
-
+	let history = useHistory()
 	const logoutHandler = () => {
-		LocalStorageService.removeToken('token')
+		LocalStorageService.removeToken('token');
+		history.push('/')
 	}
 	return (
 		<nav className='navbar'>
@@ -19,40 +19,26 @@ export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
 			<div className='menu'>
 				<ul className='menu_list'>
 					{menu.map((item) => {
-						let path = item.title.replace(' ', '').toLowerCase()
-						let href = '/' + path
-						if (user.id && item.isLoggedIn) {
-							if(item.title === 'LOG OUT'){
-								return (
-									<li key={item.id} className='menu_item' onClick={logoutHandler}>
-										<a className='menu_link' href={href}>
-											{item.title}
-										</a>
-									</li>
-								)
-							}
+						if (item.title === 'LOG OUT') {
 							return (
-								<li key={item.id} className='menu_item'>
-									<a className='menu_link' href={href}>
+								<li key={item.id} className='menu_item' onClick={logoutHandler}>
+									<a className='menu_link' href={item.path}>
 										{item.title}
 									</a>
 								</li>
 							)
 						}
-						if(!user.id && !item.isLoggedIn){
-							return (
-								<li key={item.id} className='menu_item'>
-									<a className='menu_link' href={href}>
-										{item.title}
-									</a>
-								</li>
-							)
-						}
+
+						return (
+							<li key={item.id} className='menu_item'>
+								<a className='menu_link' href={item.path}>
+									{item.title}
+								</a>
+							</li>
+						)
 					})}
 				</ul>
 			</div>
 		</nav>
 	)
 }
-
-

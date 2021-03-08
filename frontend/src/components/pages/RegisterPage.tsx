@@ -5,7 +5,7 @@ import UserService from '../../services/UserService'
 
 const userService = new UserService()
 
-export const RegisterForm: React.FC = () => {
+export const RegisterPage: React.FC = () => {
 	const [name, setName] = useState<string>('')
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')

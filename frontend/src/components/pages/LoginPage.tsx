@@ -1,19 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import LocalStorageService from '../../services/LocalStorageService'
 import UserService from '../../services/UserService'
 import { Alert } from '../Alert'
 import { useAlert } from '../../context/AlertContext'
-import { Redirect, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { UserContext } from '../../context/UserContext'
 
 const userService = new UserService()
 
-export const LoginForm: React.FC = () => {
+export const LoginPage: React.FC = () => {
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
 	const [message, setMessage] = useState<string>('')
 	const { visible, toggle }: any = useAlert()
+	const userContext:any = useContext(UserContext)
 	let history = useHistory()
-
 	const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(event.target.value)
 	}
@@ -31,13 +32,14 @@ export const LoginForm: React.FC = () => {
 			return
 		}
 
-		const user = await userService.login(email, password)
-		if (user.token) {
-			LocalStorageService.setToken(user.token)
+		const userData = await userService.login(email, password)
+		if (userData.token) {
+			LocalStorageService.setToken(userData.token)
+			userContext.changeUserContext(userData.user)
 			history.push('/')
 		} else {
 			if (!visible) {
-				setMessage(user.message)
+				setMessage(userData.message)
 				toggle()
 			}
 			return
@@ -54,13 +56,14 @@ export const LoginForm: React.FC = () => {
 				}
 				return
 			}
-			const user = await userService.login(email, password)
-			if (user.token) {
-				LocalStorageService.setToken(user.token)
+			const userData = await userService.login(email, password)
+			if (userData.token) {
+				LocalStorageService.setToken(userData.token)
+				userContext.changeUserContext(userData.user)
 				history.push('/')
 			} else {
 				if (!visible) {
-					setMessage(user.message)
+					setMessage(userData.message)
 					toggle()
 				}
 				return
