@@ -1,20 +1,27 @@
 import React, { useContext } from 'react'
 import { useHistory } from 'react-router'
+import { UserContext } from '../context/UserContext'
 import LocalStorageService from '../services/LocalStorageService'
+// import lines from '../img/lines.png'
 interface NavbarProps {
 	menu: any[]
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
+	// console.log(lines)
+	const userData: any = useContext(UserContext)
 	let history = useHistory()
 	const logoutHandler = () => {
-		LocalStorageService.removeToken('token');
+		LocalStorageService.removeToken('token')
+		userData.changeUserContext({})
 		history.push('/')
 	}
 	return (
 		<nav className='navbar'>
 			<div>
-				<a href='/'>LINES</a>
+				<a href='/'>
+					LINES <img />
+				</a>
 			</div>
 			<div className='menu'>
 				<ul className='menu_list'>

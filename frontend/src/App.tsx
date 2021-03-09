@@ -36,7 +36,7 @@ const App: React.FC = () => {
 				<Router>
 					<Navbar menu={currentMenu} />
 					<div className='container'>
-						{currentMenu.map((item) => {
+						{currentMenu.map((item:any) => {
 							return <Route key={item.id} path={item.path} component={item.component} />
 						})}
 					</div>

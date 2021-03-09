@@ -11,7 +11,7 @@ const userService = new UserService()
 export const LoginPage: React.FC = () => {
 	const [email, setEmail] = useState<string>('')
 	const [password, setPassword] = useState<string>('')
-	const [message, setMessage] = useState<string>('')
+	const [message, setMessage] = useState('')
 	const { visible, toggle }: any = useAlert()
 	const userContext:any = useContext(UserContext)
 	let history = useHistory()
