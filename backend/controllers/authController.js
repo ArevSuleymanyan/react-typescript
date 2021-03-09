@@ -82,4 +82,20 @@ async function register(req, res) {
     });
 }
 
-export { login, register };
+async function addPicture(req, res) {
+    if (req.body.id !== req.userInfo.id) {
+        return res.status(404);
+    }
+
+    let id = req.body.id;
+    let picture = req.body.picture;
+
+    
+    await userService.insertPicture(id, picture);
+    return res.json({
+        user: req.userInfo,
+        message: 'pic added',
+    });
+}
+
+export { login, register, addPicture };

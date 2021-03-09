@@ -16,7 +16,7 @@ export const LoginPage: React.FC = () => {
 	const userContext:any = useContext(UserContext)
 	let history = useHistory()
 	const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setEmail(event.target.value)
+		setEmail(event.target.value) 
 	}
 	const passwordChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPassword(event.target.value)

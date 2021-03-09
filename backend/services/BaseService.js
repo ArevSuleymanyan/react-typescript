@@ -24,7 +24,5 @@ export default class BaseService {
             .then(() => console.log('update'))
             .catch((error) => console.log(error));
     }
-    // deleteItem(){
-
-    // }
+   
 }

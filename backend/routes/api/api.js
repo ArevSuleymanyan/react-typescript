@@ -1,6 +1,10 @@
 import { Router } from 'express';
 import { addBoard } from '../../controllers/gameController.js';
-import { login, register } from '../../controllers/authController.js';
+import {
+    login,
+    register,
+    addPicture,
+} from '../../controllers/authController.js';
 import GameService from '../../services/GameService.js';
 
 const router = new Router();
@@ -9,9 +13,10 @@ const gameService = new GameService();
 router.post('/login', login);
 router.post('/register', register);
 router.post('/board', addBoard);
+router.post('/picture', addPicture);
 
 router.get('/user', async (req, res) => {
-    res.json(req.userInfo)
+    res.json(req.userInfo);
 });
 
 router.get('/game', async (req, res) => {
@@ -21,4 +26,3 @@ router.get('/game', async (req, res) => {
 });
 
 export default router;
-

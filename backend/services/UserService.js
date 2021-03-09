@@ -28,4 +28,23 @@ export default class UserService extends BaseService {
             .then(() => console.log('user added'))
             .catch((error) => console.log(error));
     }
+    async insertPicture(userId, picture){
+        const result = await this.updatePicture(userId);
+        if(!result){
+            const sql = `INSERT INTO picture(user_id, image) VALUES(?, ?)`
+            return queryAsync(sql, [userId, picture])
+            .then(()=> console.log('pic added'))
+            .catch(e => console.log(e.message))
+        } else {
+            const sql = `UPDATE picture SET image=? WHERE user_id=${userId}`
+            return queryAsync(sql, picture)
+            .then(()=> console.log('pic added'))
+            .catch(e => console.log(e.message))
+        }
+    }
+
+
+    updatePicture(userId){
+        return super.getItemById('picture','user_id', userId) 
+    }
 }
