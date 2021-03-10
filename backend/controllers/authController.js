@@ -83,17 +83,17 @@ async function register(req, res) {
 }
 
 async function addPicture(req, res) {
-    if (req.body.id !== req.userInfo.id) {
+    
+    if (Number(req.body.id) !== Number(req.userInfo.id)) {
         return res.status(404);
     }
-
     let id = req.body.id;
-    let picture = req.body.picture;
+    let filename = req.file.filename;
 
     
-    await userService.insertPicture(id, picture);
+    await userService.insertPicture(id, filename);
     return res.json({
-        user: req.userInfo,
+        path: req.file.path,
         message: 'pic added',
     });
 }

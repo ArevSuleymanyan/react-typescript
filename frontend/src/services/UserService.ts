@@ -42,19 +42,19 @@ export default class UserService {
 		return fetch('http://localhost:3000/api/register', requestOption).then((response) => response.json())
 	}
 
-	addPicture(id: number, picture: string) {
-		const token = LocalStorageService.getToken('token')
-		const requestOption: object = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'custom-token': token
-			},
-			body: JSON.stringify({
-				id,
-				picture
-			})
-		}
-		return fetch('http://localhost:3000/api/picture', requestOption).then((response) => response.json())
-	}
+	// addPicture(id: number, picture: string) {
+	// 	const token = LocalStorageService.getToken('token')
+	// 	const requestOption: object = {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 			'custom-token': token
+	// 		},
+	// 		body: JSON.stringify({
+	// 			id,
+	// 			picture
+	// 		})
+	// 	}
+	// 	return fetch('http://localhost:3000/api/picture', requestOption).then((response) => response.json())
+	// }
 }
