@@ -30,12 +30,14 @@ const App: React.FC = () => {
 			return !item.isLoggedIn && item
 		}
 	})
+
 	return (
 		<GameProvider>
 			<AlertProvider>
 				<Router>
 					<Navbar menu={currentMenu} />
 					<div className='container'>
+						
 						{currentMenu.map((item:any) => {
 							return <Route key={item.id} path={item.path} component={item.component} />
 						})}

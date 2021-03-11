@@ -8,7 +8,7 @@ export const GameBoard: React.FunctionComponent = () => {
 	const board = useContext(GameContext)
 	return (
 		<>
-			<TopPlayers />
+			{/* <TopPlayers /> */}
 			<div className='board'>
 				{board.map((item) => {
 					i++

@@ -72,6 +72,7 @@ export const LoginPage: React.FC = () => {
 	}
 	return (
 		<>
+		
 			<form className='login-form mb-5'>
 				<div className='mb-3'>
 					<label htmlFor='email' className='form-label'>
