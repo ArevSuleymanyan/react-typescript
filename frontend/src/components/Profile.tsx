@@ -5,30 +5,26 @@ import UserService from '../services/UserService'
 const userService = new UserService();
 
 export const Profile: React.FC = () => {
-	const { user }: any = useContext(UserContext);
-	// const [file, setFile] = useState(null)
-	// const fileSelectedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-	// 	setFile(e.target.files[0])
-	// }
-	// const fileUploadHandler = async () =>{
-	// 	console.log(user.id, file.name)
-	// 	await userService.addPicture(user.id, file.name)
-	// }
+	const [file, setFile] = useState<any>()
+	const { user }  = useContext(UserContext)
+
+	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setFile(e.target.files[0])
+	}
+	const onClickHandler = async (e:React.MouseEvent) => {
+		e.preventDefault();
+		const formData = new FormData()
+		formData.append('avatar', file)
+		const pic = await userService.addPicture(formData)
+		console.log(pic)
+	}
+
 	return (
-		<>
-			{/* <div className='profile-img'>
-				<input type="file" onChange={fileSelectedHandler}/>
-				<button className="btn btn-warning" onClick={fileUploadHandler}>Upload</button>
-			</div> */}
-			<hr/>
-			<div>
-				<p>
-					Name: <strong>{user.name}</strong>
-				</p>
-				<p>
-					Email: <strong>{user.email}</strong>
-				</p>
-			</div>
-		</>
+		<form>
+			<input type='file' name='avatar' onChange={onChangeHandler} />
+			<button className='btn btn-success' onClick={onClickHandler}>
+				Upload
+			</button>
+		</form>
 	)
 }

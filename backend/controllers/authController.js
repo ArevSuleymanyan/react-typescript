@@ -83,14 +83,12 @@ async function register(req, res) {
 }
 
 async function addPicture(req, res) {
-    
-    if (Number(req.body.id) !== Number(req.userInfo.id)) {
-        return res.status(404);
-    }
-    let id = req.body.id;
+    // if (Number(req.body.id) !== Number(req.userInfo.id)) {
+    //     return res.status(404);
+    // }
+    // let id = req.body.id;
+    let id = req.userInfo.id;
     let filename = req.file.filename;
-
-    
     await userService.insertPicture(id, filename);
     return res.json({
         path: req.file.path,
