@@ -8,7 +8,7 @@ export default class GameService extends BaseService {
         super();
         this.table = 'game';
         this.id = 'user_id';
-        this.game_column = 'lines_98';
+        this.game_column = 'game_board';
     }
 
     getGameById(id) {
@@ -17,7 +17,7 @@ export default class GameService extends BaseService {
 
     insertNewGame(id, board) {
         const json = JSON.stringify(board);
-        const sql = `INSERT game(user_id, lines_98) VALUES (${id}, ?)`;
+        const sql = `INSERT game(user_id, game_board) VALUES (${id}, ?)`;
         return queryAsync(sql, [json])
             .then(() => console.log('insert game '))
             .catch((error) => console.log('Error from insertNewGame:', error));

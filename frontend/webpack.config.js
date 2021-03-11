@@ -80,6 +80,7 @@ module.exports = {
 			{
 				test: /\.(png|svg|jpg|gif)$/i,
 				use: ['file-loader']
+				
 			},
 			{
 				test: /\.html$/,

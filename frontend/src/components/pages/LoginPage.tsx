@@ -5,6 +5,7 @@ import { Alert } from '../Alert'
 import { useAlert } from '../../context/AlertContext'
 import { useHistory } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext'
+import lines from '../../images/lines.png'
 
 const userService = new UserService()
 
@@ -13,10 +14,10 @@ export const LoginPage: React.FC = () => {
 	const [password, setPassword] = useState<string>('')
 	const [message, setMessage] = useState('')
 	const { visible, toggle }: any = useAlert()
-	const userContext:any = useContext(UserContext)
+	const userContext: any = useContext(UserContext)
 	let history = useHistory()
 	const emailChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setEmail(event.target.value) 
+		setEmail(event.target.value)
 	}
 	const passwordChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPassword(event.target.value)
@@ -72,8 +73,8 @@ export const LoginPage: React.FC = () => {
 	}
 	return (
 		<>
-		
-			<form className='login-form mb-5'>
+			<form className='login-form mb-5 mt-5'>
+				<div className="circle" ></div>
 				<div className='mb-3'>
 					<label htmlFor='email' className='form-label'>
 						Email address

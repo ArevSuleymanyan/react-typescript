@@ -9,7 +9,7 @@ export const About: React.FC = () => {
 	
 
 	return (
-		<div className='about '>
+		<div className='about mt-5 '>
 			<div className='about-content'>
 				<p>
 					Lines 98 classic game interface is a square of 9 horizontal lines, 9 vertical lines, creating 81 small

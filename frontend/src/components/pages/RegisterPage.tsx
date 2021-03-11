@@ -66,7 +66,8 @@ export const RegisterPage: React.FC = () => {
 	let confirmPassPlc = 'Please confirm the password.'
 	return (
 		<>
-			<form className='login-form mb-5'>
+			<form className='login-form mb-5 mt-5'>
+			<div className="circle" ></div>
 				<div className='mb-3'>
 					<label htmlFor='name' className='form-label'>
 						Name

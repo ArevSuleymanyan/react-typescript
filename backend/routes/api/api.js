@@ -23,7 +23,7 @@ router.get('/user', async (req, res) => {
 router.get('/game', async (req, res) => {
     let id = req.userInfo.id;
     let game = await gameService.getGameById(id);
-    res.json(game.lines_98);
+    res.json(game.game_board);
 });
 
 export default router;

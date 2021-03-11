@@ -46,7 +46,7 @@ a {
 	border-color: rgb(13, 143, 175);
 	border-width: 1px;
 }
-.login-form{
+.login-form {
 	width: 300px;
 	border: 1px rgb(13, 143, 175) solid;
 	padding: 20px 20px;
@@ -78,8 +78,8 @@ a {
 
 .container {
 	max-width: 700px;
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 .board {
@@ -98,7 +98,6 @@ a {
 	cursor: pointer;
 }
 
-
 .add-photo {
 	border: 2px rgb(218, 218, 218) solid;
 	border-radius: 3px;
@@ -107,7 +106,6 @@ a {
 	color: white;
 	font-weight: bold;
 	margin-bottom: 20px;
-	
 }
 
 .r {
@@ -150,30 +148,38 @@ a {
 	text-align: center;
 	margin-bottom: 20px;
 }
-.top-table{
+.top-table {
 	display: inline-block;
 	margin-top: 10px;
 	border-bottom: grey 1px solid;
 	border-radius: 5px;
 	box-shadow: 0px 0px 15px 2px rgba(141, 156, 165, 0.75);
 }
-.top-title{
-	background: linear-gradient(270deg, rgba(180,58,164,1) 0%, rgba(1,109,186,1) 100%);
+.top-title {
+	background: linear-gradient(270deg, rgba(180, 58, 164, 1) 0%, rgba(1, 109, 186, 1) 100%);
 	border: #7036dbd5 1px solid;
 	border-radius: 8px;
-	box-shadow: 0px 0px 15px 2px rgba(0,125,199,0.75);
+	box-shadow: 0px 0px 15px 2px rgba(0, 125, 199, 0.75);
 	color: aliceblue;
 	cursor: pointer;
 	font-weight: bold;
 	padding: 5px 10px;
 }
 
-.heading ,.sqr{
+.heading,
+.sqr {
 	font-weight: bolder;
 	padding: 3px 5px;
 }
 
-
 .profile-pic {
 	margin-bottom: 20px;
+}
+
+.circle {
+	height: 30px;
+	width: 30px;
+	margin: 0 auto;
+	background-color: teal;
+	border-radius: 50%;
 }
