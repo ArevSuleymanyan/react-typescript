@@ -48,6 +48,7 @@ a {
 }
 .login-form {
 	width: 300px;
+	margin: 0 auto;
 	border: 1px rgb(13, 143, 175) solid;
 	padding: 20px 20px;
 	border-radius: 8px;
@@ -80,6 +81,7 @@ a {
 .container {
 	max-width: 700px;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 }
 
@@ -128,8 +130,10 @@ a {
 	cursor: pointer;
 }
 .alert:hover {
-	border: 2px solid rgb(89, 208, 238);
-	transition: 0.7s linear;
+	background-color: rgb(10, 96, 117);
+	color: white;
+	font-size: 22px;
+	transition: 0.5s linear;
 }
 
 .guest {
@@ -186,5 +190,6 @@ a {
 	background-color: rgb(13, 143, 175);;
 	border-radius: 50%;
 }
+
 
 
