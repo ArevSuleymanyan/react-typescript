@@ -23,7 +23,7 @@ export const Profile: React.FC = () => {
 	return (
 		<div className='profile'>
 			<div className='profile-pic'>
-				<img src={'http://localhost:3000/uploads/12032021-142121_800-lines.png'} alt='photo' />
+				<img src={''} alt='photo' />
 			</div>
 			<div>
 				<form className='mb-5'>

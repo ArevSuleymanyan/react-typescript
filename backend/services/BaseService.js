@@ -21,9 +21,9 @@ export default class BaseService {
     }
 
     addItemById(table, column, id, data) {
-        const sql = `INSERT ${table}(user_id,${column} VALUES(?, ?))`;
+        const sql = `INSERT ${table} (user_id,${column}) VALUES(?, ?)`;
         return queryAsync(sql, [id, data])
-            .then(() => console.log(table + 'added'))
+            .then(() => console.log(table + ' added'))
             .catch((e) => console.log(e.message));
     }
 

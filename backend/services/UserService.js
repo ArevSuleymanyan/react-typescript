@@ -31,7 +31,7 @@ export default class UserService extends BaseService {
     async savePicture(userId, picture) {
         const result = await super.getItemById('picture', 'user_id', userId);
         if (!result) {
-            return super.addItemById('picure', 'image', userId, picture);
+            return super.addItemById('picture', 'image', userId, picture);
         } else {
             return super.updateItem(
                 'picture',

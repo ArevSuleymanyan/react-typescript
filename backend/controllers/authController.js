@@ -4,6 +4,7 @@ import UserService from '../services/UserService.js';
 import GameService from '../services/GameService.js';
 import LinesLogic from '../models/LinesLogic.js';
 import * as EmailValidator from 'email-validator';
+import { unlink } from 'fs';
 
 const userService = new UserService();
 const gameService = new GameService();
@@ -88,6 +89,14 @@ async function addPicture(req, res) {
     }
     let id = req.body.id;
     let filename = req.file.filename;
+    const result = await userService.getItemById('picture', 'user_id', id);
+    if (result) {
+        unlink('.\\uploads\\' + result.image, (err) => {
+            if (err) throw err;
+            console.log(`${result.image} deleted`);
+        });
+    }
+
     await userService.savePicture(id, filename);
     return res.json({
         path: req.file.path,

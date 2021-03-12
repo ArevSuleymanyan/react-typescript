@@ -29,12 +29,11 @@ app.use((req, res, next) => {
     next();
 });
 
-const allow = ['api/login', 'api/register',];
+const allow = ['api/login', 'api/register', 'favicon.ico'];
 app.use(async (req, res, next) => {
     const foundUrl = allow.find((el) =>
         new RegExp(`${el}\/?$`, 'gm').test(req.url)
     );
-
     if (foundUrl) {
         next();
         return;
