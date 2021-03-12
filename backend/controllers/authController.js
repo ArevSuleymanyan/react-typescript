@@ -76,7 +76,7 @@ async function register(req, res) {
     const user = await userService.getUserByEmail(email);
     const id = user[0].id;
     const board = linesLogic.board;
-    gameService.insertNewGame(id, board);
+    gameService.addNewGame(id, board);
     res.json({
         message: 'User registered',
     });
@@ -88,7 +88,7 @@ async function addPicture(req, res) {
     }
     let id = req.body.id;
     let filename = req.file.filename;
-    await userService.insertPicture(id, filename);
+    await userService.savePicture(id, filename);
     return res.json({
         path: req.file.path,
         message: 'pic added',

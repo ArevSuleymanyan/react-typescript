@@ -15,12 +15,9 @@ export default class GameService extends BaseService {
         return super.getItemById(this.table, this.id, id);
     }
 
-    insertNewGame(id, board) {
+    addNewGame(id, board) {
         const json = JSON.stringify(board);
-        const sql = `INSERT game(user_id, game_board) VALUES (${id}, ?)`;
-        return queryAsync(sql, [json])
-            .then(() => console.log('insert game '))
-            .catch((error) => console.log('Error from insertNewGame:', error));
+        return super.addItemById(this.table, this.game_column, id, json);
     }
 
     updateGame(id, board) {

@@ -9,14 +9,14 @@ export default class UserService extends BaseService {
         this.id = 'id';
         this.column = 'email';
     }
+    getUserById(id) {
+        return super.getItemById(this.table, this.id, id);
+    }
 
     getMatchingEmail(email) {
         return super.getItemList(this.table, this.column, email);
     }
 
-    getUserById(id) {
-        return super.getItemById(this.table, this.id, id);
-    }
 
     getUserByEmail(email) {
         return super.getItemList(this.table, this.column, email);
@@ -28,23 +28,18 @@ export default class UserService extends BaseService {
             .then(() => console.log('user added'))
             .catch((error) => console.log(error));
     }
-    async insertPicture(userId, picture){
-        const result = await this.updatePicture(userId);
-        if(!result){
-            const sql = `INSERT INTO picture(user_id, image) VALUES(?, ?)`
-            return queryAsync(sql, [userId, picture])
-            .then(()=> console.log('pic added'))
-            .catch(e => console.log(e.message))
+    async savePicture(userId, picture) {
+        const result = await super.getItemById('picture', 'user_id', userId);
+        if (!result) {
+            return super.addItemById('picure', 'image', userId, picture);
         } else {
-            const sql = `UPDATE picture SET image=? WHERE user_id=${userId}`
-            return queryAsync(sql, picture)
-            .then(()=> console.log('pic added'))
-            .catch(e => console.log(e.message))
+            return super.updateItem(
+                'picture',
+                'image',
+                'user_id',
+                userId,
+                picture
+            );
         }
-    }
-
-
-    updatePicture(userId){
-        return super.getItemById('picture','user_id', userId) 
     }
 }
