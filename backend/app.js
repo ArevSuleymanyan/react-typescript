@@ -29,7 +29,7 @@ app.use((req, res, next) => {
     next();
 });
 
-const allow = ['api/login', 'api/register', 'uploads'];
+const allow = ['api/login', 'api/register',];
 app.use(async (req, res, next) => {
     const foundUrl = allow.find((el) =>
         new RegExp(`${el}\/?$`, 'gm').test(req.url)
