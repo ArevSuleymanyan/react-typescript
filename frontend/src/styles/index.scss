@@ -23,7 +23,7 @@ a {
 	background-color: #d3e5f3;
 	color: rgb(13, 143, 175);
 	font-weight: bold;
-	padding: 15px 30px;
+	padding: 15px 20px;
 	margin-bottom: 20px;
 	box-shadow: 3px 10px 20px -3px #728a8d;
 }
@@ -65,6 +65,7 @@ a {
 	padding: 50px 10px 100px;
 	border-radius: 5px;
 	margin-bottom: 20px;
+	box-shadow: 3px 10px 20px -3px #728a8d;
 }
 
 .center {
@@ -173,13 +174,18 @@ a {
 }
 
 .profile-pic {
+	border: 1px solid grey;
+	height: 300px;
 	margin-bottom: 20px;
+	width: 200px;
 }
 
 .circle {
 	height: 30px;
 	width: 30px;
 	margin: 0 auto;
-	background-color: teal;
+	background-color: rgb(13, 143, 175);;
 	border-radius: 50%;
 }
+
+

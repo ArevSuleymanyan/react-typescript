@@ -19,7 +19,7 @@ export const About: React.FC = () => {
 				</p>
 			</div>
 			<div className='center'>
-				<button className='btn btn-primary ' onClick={clickHandler}>LINES</button>
+				{/* <button className='btn btn-primary ' onClick={clickHandler}>LINES</button> */}
 			</div>
 		</div>
 	)
