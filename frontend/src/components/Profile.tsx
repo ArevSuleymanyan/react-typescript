@@ -6,8 +6,7 @@ const userService = new UserService()
 
 export const Profile: React.FC = () => {
 	const [file, setFile] = useState<any>()
-	const { user } = useContext(UserContext)
-
+	const { user, avatar , changeAvatarContext}:any = useContext(UserContext)
 	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFile(e.target.files[0])
 	}
@@ -16,14 +15,15 @@ export const Profile: React.FC = () => {
 		const formData = new FormData()
 		formData.append('avatar', file)
 		formData.append('id', user.id)
-		const pic = await userService.addPicture(formData)
-		console.log(pic)
+		const pic = await userService.addPicture(formData);
+		changeAvatarContext(pic.image)
 	}
+
 
 	return (
 		<div className='profile'>
 			<div className='profile-pic'>
-				<img src={''} alt='photo' />
+				<img src={`http://localhost:3000/uploads/${avatar}`} alt='photo' />
 			</div>
 			<div>
 				<form className='mb-5'>

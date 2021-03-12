@@ -28,6 +28,7 @@ export default class UserService extends BaseService {
             .then(() => console.log('user added'))
             .catch((error) => console.log(error));
     }
+    
     async savePicture(userId, picture) {
         const result = await super.getItemById('picture', 'user_id', userId);
         if (!result) {

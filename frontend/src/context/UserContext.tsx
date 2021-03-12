@@ -6,11 +6,16 @@ export const UserContext = React.createContext({})
 const userService = new UserService()
 export const UserProvider = ({ children }: any) => {
 	const [user, setUser] = useState({})
+	const [avatar, setAvatar] = useState('')
 	const changeUserContext = (data:any) => setUser(data)
+	const changeAvatarContext = (data:any) => setAvatar(data)
 	useEffect(() => {
 		const userInfo = async () => {
 			await userService.getUserInfo().then((result) =>  { 
-				setUser(result)})
+				setUser(result.user)
+				setAvatar(result.avatar)
+			})
+
 		}
 		userInfo()
 	}, [])
@@ -18,7 +23,9 @@ export const UserProvider = ({ children }: any) => {
 	return (
 		 <UserContext.Provider value={{
 			 user,
-			 changeUserContext
+			 avatar,
+			 changeUserContext,
+			 changeAvatarContext,
 		 }}>
 			 {children}
 			 </UserContext.Provider>

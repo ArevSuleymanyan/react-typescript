@@ -99,7 +99,7 @@ async function addPicture(req, res) {
 
     await userService.savePicture(id, filename);
     return res.json({
-        path: req.file.path,
+        image: req.file.filename,
         message: 'pic added',
     });
 }
