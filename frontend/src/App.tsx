@@ -15,6 +15,7 @@ const App: React.FC = () => {
 	const { user }: any = useContext(UserContext)
 
 	const menu = [
+		{ title: 'LINES', id: 1, isLoggedIn: false, component: HomePage, path: '/' },
 		{ title: 'LOGIN', id: 2, isLoggedIn: false, component: LoginPage, path: '/login' },
 		{ title: 'REGISTER', id: 3, isLoggedIn: false, component: RegisterPage, path: '/register' },
 		{ title: 'ABOUT', id: 4, isLoggedIn: false, component: About, path: '/about' },
@@ -22,7 +23,6 @@ const App: React.FC = () => {
 		{ title: 'GAME', id: 6, isLoggedIn: true, component: GameBoard, path: '/game' },
 		{ title: 'LOG OUT', id: 7, isLoggedIn: true, component: '', path: '/logout' }
 	]
-
 	const currentMenu = menu.filter((item) => {
 		if (user && user.id) {
 			return item.isLoggedIn && item
@@ -37,8 +37,8 @@ const App: React.FC = () => {
 				<Router>
 					<Navbar menu={currentMenu} />
 					<div className='container'>
-						
-						{currentMenu.map((item:any) => {
+						{currentMenu.map((item: any) => {
+							if(item.title === 'LINES') return <Route key={item.id}  exact path={item.path} component={item.component} />
 							return <Route key={item.id} path={item.path} component={item.component} />
 						})}
 					</div>

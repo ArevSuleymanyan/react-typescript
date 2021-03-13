@@ -17,7 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
 	return (
 		<nav className='navbar'>
 			<div>
-				<a href='/'>LINES</a> 
+				{/* <a href='/'>LINES</a>  */}
 			</div>
 			<div className='menu'>
 				<ul className='menu_list'>
