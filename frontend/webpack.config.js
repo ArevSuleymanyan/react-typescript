@@ -78,13 +78,12 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.(png|svg|jpg|gif)$/i,
-				use: ['file-loader']
-				
-			},
-			{
 				test: /\.html$/,
 				use: [{ loader: 'html-loader' }]
+			},
+			{
+				test: /\.(png|jpg|svg|gif|jpeg)/,
+				use: ['file-loader']
 			},
 			{
 				test: /\.(js|jsx|ts|tsx)$/,
