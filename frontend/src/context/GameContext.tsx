@@ -7,7 +7,10 @@ export const GameProvider = ({children}:any) => {
     const [game, setGame] = useState([]);
 
     useEffect(()=>{
-        const getGameBoard = async () => { await gameService.getGameInfo().then(result => setGame(result))}
+        const getGameBoard = async () => { await gameService.getGameInfo().then(result => {
+            console.log(result)
+            setGame(result)
+        } )}
         getGameBoard();
     },[])
     return (

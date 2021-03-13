@@ -12,10 +12,6 @@ export default class GameService {
 		}
 		return fetch('http://localhost:3000/api/game', requestOption).then((response) => response.json())
 	}
-
-    getTopPlayers(){
-
-    }
     
 	addBoard() {
 
