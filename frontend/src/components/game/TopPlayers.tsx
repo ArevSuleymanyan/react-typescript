@@ -1,35 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react'
+import { GameContext } from '../../context/GameContext'
 
-export const TopPlayers:React.FC = () => {
-    return (
-        <div className="top-players">
-            <p className='mb-2'> <span className="top-title">TOP PLAYER</span>  </p>
-            <table className="top-table">
-                <thead>
-                <tr>
-                    <th className='heading'>N</th>
-                    <th className='heading'>Name</th>
-                    <th className='heading'>Score</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                   <td className='sqr'>1.</td> 
-                   <td className='sqr'>Tom</td> 
-                   <td className='sqr'>300</td> 
-                </tr>
-                <tr>
-                   <td className='sqr'>2.</td> 
-                   <td className='sqr'>Tom</td> 
-                   <td className='sqr'>400</td> 
-                </tr>
-                <tr>
-                   <td className='sqr'>3.</td> 
-                   <td className='sqr'>Tom</td> 
-                   <td className='sqr'>500</td> 
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    )
+export const TopPlayers: React.FC = () => {
+	const { players }: any = useContext(GameContext)
+	let i = 0
+	return (
+		<div className='top-players'>
+			<p className='top-title'>TOP PLAYERS</p>
+			<ul>
+				{players.map((player: any) => {
+					i++
+					return (
+						<li className='top-list' key={player.name + player.score}>
+							<span className='top-i'>{i}. &nbsp;</span>
+							<span className='top-name'>{player.name}</span>
+							<span className='top-score'>{player.score}</span>
+						</li>
+					)
+				})}
+			</ul>
+		</div>
+	)
 }

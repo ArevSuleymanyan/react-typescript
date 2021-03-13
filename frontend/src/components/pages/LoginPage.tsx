@@ -61,7 +61,7 @@ export const LoginPage: React.FC = () => {
 			if (userData.token) {
 				LocalStorageService.setToken(userData.token)
 				userContext.changeUserContext(userData.user)
-				history.push('/')
+				 history.push('/')
 			} else {
 				if (!visible) {
 					setMessage(userData.message)

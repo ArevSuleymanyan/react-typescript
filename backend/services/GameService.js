@@ -30,4 +30,11 @@ export default class GameService extends BaseService {
             data
         );
     }
+    getTopPlayers() {
+        const sql =
+            'select name,score from  game, users  where game.user_id = users.id order by score desc';
+        return queryAsync(sql)
+            .then((result) => result.slice(0,3))
+            .catch((error) => console.log(error.message));
+    }
 }

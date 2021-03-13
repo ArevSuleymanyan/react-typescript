@@ -86,19 +86,21 @@ a {
 }
 
 .board {
-	width: 400px;
+	width: 450px;
 	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
+	margin-top: 50px;
 }
 .cell {
 	flex-direction: row;
-	height: 40px;
-	width: 40px;
+	height: 45px;
+	width: 45px;
 	border-radius: 5px;
 	background-color: rgb(255, 255, 255);
 	margin: 1px;
 	cursor: pointer;
+	box-shadow: 3px 10px 20px -3px #728a8d;
 }
 
 .add-photo {
@@ -149,33 +151,6 @@ a {
 	font-weight: bold;
 }
 
-.top-players {
-	text-align: center;
-	margin-bottom: 20px;
-}
-.top-table {
-	display: inline-block;
-	margin-top: 10px;
-	border-bottom: grey 1px solid;
-	border-radius: 5px;
-	box-shadow: 0px 0px 15px 2px rgba(141, 156, 165, 0.75);
-}
-.top-title {
-	background: linear-gradient(270deg, rgba(180, 58, 164, 1) 0%, rgba(1, 109, 186, 1) 100%);
-	border: #7036dbd5 1px solid;
-	border-radius: 8px;
-	box-shadow: 0px 0px 15px 2px rgba(0, 125, 199, 0.75);
-	color: aliceblue;
-	cursor: pointer;
-	font-weight: bold;
-	padding: 5px 10px;
-}
-
-.heading,
-.sqr {
-	font-weight: bolder;
-	padding: 3px 5px;
-}
 
 .profile-pic {
 	border: 1px solid grey;
@@ -187,12 +162,43 @@ a {
 	height: 30px;
 	width: 30px;
 	margin: 0 auto;
-	background-color: rgb(13, 143, 175);;
+	background-color: rgb(13, 143, 175);
 	border-radius: 50%;
 }
 
-.logo{
-	width: 30px;
+.top-players{
+	justify-content: end;
+	padding: 10px 30px;
+	margin: 0 auto;
+	border-radius: 5px;
+	box-shadow: 3px 10px 20px -3px #728a8d;
+}
+.top-title{
+	margin-bottom: 10px;
+	text-align: center;
+	letter-spacing: 2px;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 7px 5px 5px rgba(74, 110, 140, 1);
+}
+.top-list{
+	margin-bottom: 5px;
+}
+.top-i,.top-name {
+	font-weight: bold;
+	font-size: 18px;
+	color: darkslategray;
 }
 
-
+.top-name{
+	text-transform: uppercase;
+	width: 150px;
+	display: inline-block;
+}
+.top-score{
+	font-weight: bold;
+	font-size: 18px;
+	color: rgb(255, 255, 255);background-color: darkslategrey;
+	padding: 2px 5px;
+	border-radius: 5px;
+}

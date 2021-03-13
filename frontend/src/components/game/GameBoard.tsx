@@ -5,12 +5,12 @@ import { TopPlayers } from './TopPlayers'
 
 export const GameBoard: React.FunctionComponent = () => {
 	let i = 0
-	const board = useContext(GameContext)
+	const { board }: any = useContext(GameContext)
 	return (
 		<>
-			{/* <TopPlayers /> */}
+			<TopPlayers />
 			<div className='board'>
-				{board.map((item) => {
+				{board.map((item:any) => {
 					i++
 					return <GameCell key={i} item={item} />
 				})}

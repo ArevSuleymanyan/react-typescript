@@ -33,7 +33,12 @@ router.get('/user', async (req, res) => {
 router.get('/game', async (req, res) => {
     let id = req.userInfo.id;
     let game = await gameService.getGameById(id);
-    res.json(game.game_board);
+    const players = await gameService.getTopPlayers();
+
+    res.json({
+        players,
+        board: game.game_board,
+    });
 });
 
 export default router;
