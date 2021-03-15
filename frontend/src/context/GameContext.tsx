@@ -4,16 +4,23 @@ import GameService from '../services/GameService';
 export const GameContext = React.createContext([]);
 const gameService = new GameService();
 export const GameProvider = ({children}:any) => {
-    const [game, setGame] = useState([]);
+    const [board, setBoard] = useState([]);
+    const [players, setPlayers] = useState([]);
+    const changeBoard = (data:any) => setBoard(data)
 
     useEffect(()=>{
         const getGameBoard = async () => { await gameService.getGameInfo().then(result => {
-            setGame(result)
+            setBoard(result.board)
+            setPlayers(result.players)
         } )}
         getGameBoard();
     },[])
     return (
-        <GameContext.Provider value={game} >
+        <GameContext.Provider value={{
+            board,
+            players,
+            changeBoard
+        }} >
             {children}
         </GameContext.Provider>
     )

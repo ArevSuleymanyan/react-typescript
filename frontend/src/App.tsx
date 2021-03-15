@@ -34,7 +34,6 @@ const App: React.FC = () => {
 		}
 	})
 
-console.log(currentMenu)
 	return (
 		<GameProvider>
 			<AlertProvider>
