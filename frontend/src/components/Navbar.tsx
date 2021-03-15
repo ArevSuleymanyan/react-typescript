@@ -27,9 +27,9 @@ export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
 					{menu.map((item) => {
 						if (item.title === 'LOG OUT') {
 							return (
-								<li key={item.id} className='menu_item' onClick={logoutHandler}>
-									<a className='menu_link' href={item.path}>
-										{item.title}
+								<li key={item.id} className='menu_item' title='Log out' onClick={logoutHandler}>
+									<a className='menu_link'  href={item.path}>
+									<i className="fas fa-power-off" ></i>
 									</a>
 								</li>
 							)
