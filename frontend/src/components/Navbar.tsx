@@ -14,9 +14,13 @@ export const Navbar: React.FC<NavbarProps> = ({ menu }) => {
 		userData.changeUserContext({})
 		history.push('/')
 	}
+	const clickHandler = (e:React.MouseEvent) => {
+		history.push('/')
+	}
 	return (
 		<nav className='navbar'>
 			<div>
+			<i className="fas fa-gamepad fa-2x" onClick={clickHandler} ></i>
 			</div>
 			<div className='menu'>
 				<ul className='menu_list'>

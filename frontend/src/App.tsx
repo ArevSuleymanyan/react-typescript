@@ -23,14 +23,18 @@ const App: React.FC = () => {
 		{ title: 'GAME', id: 6, isLoggedIn: true, component: GameBoard, path: '/game' },
 		{ title: 'LOG OUT', id: 7, isLoggedIn: true, component: '', path: '/logout' }
 	]
-	const currentMenu = menu.filter((item) => {
+	const currentMenu = menu.filter((item:any) => {
+		if(item.title === 'LINES'){
+			return item
+		}
 		if (user && user.id) {
-			return item.isLoggedIn && item
+			return   item.isLoggedIn && item    
 		} else {
-			return !item.isLoggedIn && item
+			return !item.isLoggedIn && item 
 		}
 	})
 
+console.log(currentMenu)
 	return (
 		<GameProvider>
 			<AlertProvider>

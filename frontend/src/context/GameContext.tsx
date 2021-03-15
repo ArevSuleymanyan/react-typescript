@@ -8,7 +8,6 @@ export const GameProvider = ({children}:any) => {
 
     useEffect(()=>{
         const getGameBoard = async () => { await gameService.getGameInfo().then(result => {
-            console.log(result)
             setGame(result)
         } )}
         getGameBoard();
