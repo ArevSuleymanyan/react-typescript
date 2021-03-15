@@ -16,8 +16,8 @@ export const GameBoard: React.FunctionComponent = () => {
 	
 	
 	
-	let i = 0
-	console.log('key : ',key ,'classes : ',classes)
+	let i:number = 0
+	// console.log('key : ',key ,'classes : ',classes)
 	return (
 		<>
 			<TopPlayers />
