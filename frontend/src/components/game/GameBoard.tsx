@@ -1,30 +1,54 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { GameContext } from '../../context/GameContext'
 import { GameCell } from './GameCell'
 import { TopPlayers } from './TopPlayers'
+import LinesLogic from '../../game/LinesLogic'
+
+const linesLogic = new LinesLogic()
 
 export const GameBoard: React.FunctionComponent = () => {
-	const {board, changeBoard} = useContext(GameContext);
+	let i: number = 0
+	const { board } = useContext(GameContext)
+	const [color, setColor] =useState<string>('')
+	const [first, setFirst] = useState(-1)
+	const [second, setSecond] = useState(-1)
 
-	const [classes, setClasses] = useState('')
-	const [key , setKey] = useState('')
-	const cellClick = (e:React.MouseEvent):any => {
-		setKey(prev => prev = e.target.id)
-		// console.log(e.target.classList.add('g'))
+	useEffect(() => {
+		linesLogic.runGame(board)
+	}, [])
+
+	const cellClick = (e) => {
+		let id = Number(e.target.id)
+		if (e.target.classList.length > 1) {
+			setFirst((prev) => (prev = id))
+			setColor(e.target.classList[1])
+		}
+		else if(color) {
+			setSecond(prev => prev = id )
+		}
+	}
+	
+	if(color && second >= 0){
+		linesLogic.moveTheColor(first, second, color,board)
+		
+		// if(board[second].color){
+		// 	setFirst(-1);
+		// 	setSecond(-1);
+		// 	setColor('')
+		// }
 	}
 
+	console.log({first, second, color})
+
+
 	
-	
-	
-	let i:number = 0
-	// console.log('key : ',key ,'classes : ',classes)
 	return (
 		<>
 			<TopPlayers />
 			<div className='board'>
-				{board.map((item:any) => {
+				{board.map((item: any) => {
 					i++
-					return <GameCell key={i} item={item}  i={i} clickHandler={cellClick}  />
+					return <GameCell key={i} item={item} i={i} clickHandler={(e) => cellClick(e)} />
 				})}
 			</div>
 		</>
