@@ -24,9 +24,10 @@ router.get('/user', async (req, res) => {
         'user_id',
         req.userInfo.id
     );
+
     res.json({
         user: req.userInfo,
-        avatar: result.image,
+        avatar: result.image ,
     });
 });
 

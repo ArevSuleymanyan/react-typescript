@@ -42,6 +42,7 @@ export const LoginPage: React.FC = () => {
 			if (!visible) {
 				setMessage(userData.message)
 				toggle()
+				
 			}
 			return
 		}
@@ -54,6 +55,7 @@ export const LoginPage: React.FC = () => {
 				if (!visible) {
 					setMessage('Please provide an email and password')
 					toggle()
+					
 				}
 				return
 			}

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Alert } from '../Alert'
 import { useAlert } from '../../context/AlertContext'
 import UserService from '../../services/UserService'
+import { useHistory } from 'react-router'
 
 const userService = new UserService()
 
@@ -12,7 +13,7 @@ export const RegisterPage: React.FC = () => {
 	const [confirmPassword, setConfirmPassword] = useState<string>('')
 	const [message, setMesage] = useState<string>('')
 	const { visible, toggle }: any = useAlert()
-
+	let history = useHistory()
 
 	const nameChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setName(event.target.value)
@@ -39,7 +40,11 @@ export const RegisterPage: React.FC = () => {
 		const data = await userService.register(name, email, password, confirmPassword)
 		if (!visible) {
 			setMesage(data.message)
-			toggle()
+			if (data.message === 'User registered') {
+				history.push('/login')
+			} else {
+				toggle()
+			}
 		}
 	}
 	const keyPressHandler = async (event: React.KeyboardEvent) => {
@@ -54,20 +59,23 @@ export const RegisterPage: React.FC = () => {
 			}
 			const data = await userService.register(name, email, password, confirmPassword)
 			if (!visible) {
-				setMesage(data.message)
-				toggle()
+				if (data.message === 'User registered') {
+					history.push('/login')
+				} else {
+					toggle()
+				}
 			}
 		}
 	}
 
-	let namePlc:string = 'The name must be a minimum of 4 characters long and not start with a number.'
-	let emailPlc:string = 'The email field must be an email address.'
-	let passwordPlc:string = 'The password must be a minimum of four characters long.'
-	let confirmPassPlc:string = 'Please confirm the password.'
+	let namePlc: string = 'The name must be a minimum of 4 characters long and not start with a number.'
+	let emailPlc: string = 'The email field must be an email address.'
+	let passwordPlc: string = 'The password must be a minimum of four characters long.'
+	let confirmPassPlc: string = 'Please confirm the password.'
 	return (
 		<>
 			<form className='login-form mb-5 mt-5'>
-			<div className="circle" ></div>
+				<div className='circle'></div>
 				<div className='mb-3'>
 					<label htmlFor='name' className='form-label'>
 						Name
