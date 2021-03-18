@@ -1,10 +1,12 @@
 export default class LinesLogic {
 	colors: string[]
 	board: any
+	points: number
 
 	constructor() {
 		this.resetData()
 		this.colors = ['r', 'g', 'b', 'y', 'o']
+		this.points = 0
 	}
 
 	resetData() {
@@ -59,7 +61,7 @@ export default class LinesLogic {
 		}
 	}
 
-	static checkColorsHorizontal(board: Array<{ color: string; number: number }>, n = 3) {
+	checkColorsHorizontal(board: Array<{ color: string; number: number }>, n = 3) {
 		for (let i = 0; i < board.length - n; i += 1) {
 			if (board[i].color) {
 				let count = 0
@@ -72,6 +74,7 @@ export default class LinesLogic {
 					}
 				}
 				if (count === n) {
+					this.points += 10 * n
 					for (let j = 0; j < n; j += 1) {
 						board[i + j].color = ''
 						board[i + j].number = 0
@@ -81,7 +84,7 @@ export default class LinesLogic {
 		}
 	}
 
-	static checkColorsVertical(board: Array<{ color: string; number: number }>, n = 3) {
+	checkColorsVertical(board: Array<{ color: string; number: number }>, n = 3) {
 		for (let i = 0; i < board.length - (n - 1) * 9; i += 1) {
 			if (board[i].color) {
 				let count = 0
@@ -95,12 +98,13 @@ export default class LinesLogic {
 						board[i + j].color = ''
 						board[i + j].number = 0
 					}
+					this.points += 10 * n
 				}
 			}
 		}
 	}
 
-	static checkColorsDiagonal(board: Array<{ color: string; number: number }>, n = 3) {
+	checkColorsDiagonal(board: Array<{ color: string; number: number }>, n = 3) {
 		for (let i = 0; i < board.length - (n - 1) * 10; i += 1) {
 			if (board[i].color) {
 				let count = 0
@@ -114,6 +118,7 @@ export default class LinesLogic {
 						board[i + j].color = ''
 						board[i + j].number = 0
 					}
+					this.points += 10 * n
 				}
 			}
 		}
@@ -135,7 +140,7 @@ export default class LinesLogic {
 		}
 	}
 
-	static checkEndGame(board: Array<{ color: string; number: number }>) {
+	checkEndGame(board: Array<{ color: string; number: number }>) {
 		for (let i = 0; i < board.length; i += 1) {
 			if (!board[i].color) {
 				return false
@@ -144,9 +149,7 @@ export default class LinesLogic {
 		return true
 	}
 
-	static showAnimation(color: string, fastestWay: [], callback: any) {
-		// const milliseconds = 1500;
-		// const cellDuration = milliseconds / fastestWay.length;
+	showAnimation(color: string, fastestWay: [], callback: any) {
 		const cellDuration = 160
 		let index = 0
 
@@ -169,18 +172,18 @@ export default class LinesLogic {
 		this.checkStep(index1, 1, board)
 		if (board[index2].number > 0) {
 			const way = [index2]
-			const fastestWay = this.findFastestRoud(board, index2, board[index2].number, way)
+			const fastestWay: number[] = this.findFastestRoud(board, index2, board[index2].number, way)
 			fastestWay.reverse()
 
-			this.constructor.showAnimation(color, fastestWay, () => {
+			this.showAnimation(color, fastestWay, () => {
 				board[index2].color = board[index1].color
 				board[index2].number = -1
 				board[index1].color = ''
 				board[index1].number = 0
 				this.updateBoardColor(board)
-				this.constructor.checkColorsHorizontal(board)
-				this.constructor.checkColorsVertical(board)
-				this.constructor.checkColorsDiagonal(board)
+				this.checkColorsHorizontal(board)
+				this.checkColorsVertical(board)
+				this.checkColorsDiagonal(board)
 				for (let i = 0; i < board.length; i += 1) {
 					const item: any = document.getElementById(String(i))
 					const classNames = item.classList

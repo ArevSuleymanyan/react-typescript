@@ -1,10 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-export const GameScore:React.FC = () => {
-    return (
-        <div className="top-players">
-            <p className="top-title">SCORE</p>
-            <div className="score">251</div>
-        </div>
-    )
+type Props = {
+	score: number
+}
+export const GameScore: JSX.Element = ({ score }: Props) => {
+	return (
+		<div className='top-players'>
+			<p className='top-title'>SCORE</p>
+			<div className='score'>{score}</div>
+		</div>
+	)
 }

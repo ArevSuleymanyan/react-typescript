@@ -7,7 +7,7 @@ type Props = {
 interface GameProps {
     board: object[],
     players:object[],
-    changeBoard: (data:any) => void
+    changeBoard: (data:any) => void,
 }
 
 export const GameContext = React.createContext<GameProps|{}>({});

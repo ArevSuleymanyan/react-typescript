@@ -10,6 +10,7 @@ const linesLogic = new LinesLogic()
 export const GameBoard: React.FunctionComponent = () => {
 	let i: number = 0
 	const { board } = useContext(GameContext)
+	const [score, setScore] = useState(0)
 	const [color, setColor] = useState<string>('')
 	const [first, setFirst] = useState(-1)
 	const [second, setSecond] = useState(-1)
@@ -30,13 +31,16 @@ export const GameBoard: React.FunctionComponent = () => {
 
 	if (color && second >= 0) {
 		linesLogic.moveTheColor(first, second, color, board)
+		if(score !== linesLogic.points){
+			setScore(linesLogic.points)
+		}
 	}
 
 	return (
 		<>
 			<div className='score-box'>
 				<TopPlayers />
-				<GameScore />
+				<GameScore score={score} />
 			</div>
 			<div className='board'>
 				{board.map((item: { color: string }) => {
