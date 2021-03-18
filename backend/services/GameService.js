@@ -20,21 +20,26 @@ export default class GameService extends BaseService {
         return super.addItemById(this.table, this.game_column, id, json);
     }
 
-    updateGame(id, board) {
+    updateGame(id, board, score) {
         const data = JSON.stringify(board);
-        return super.updateItem(
-            this.table,
-            this.game_column,
-            this.id,
-            id,
-            data
-        );
+        const sql = `UPDATE ${this.table} SET ${this.game_column}= ?, score=${score} WHERE ${this.id}=${id}`;
+
+        return queryAsync(sql, [data])
+            .then(() => console.log('game saved'))
+            .catch((e) => console.log(e.message));
+      
     }
     getTopPlayers() {
         const sql =
             'select name,score from  game, users  where game.user_id = users.id order by score desc';
         return queryAsync(sql)
-            .then((result) => result.slice(0,3))
+            .then((result) => result.slice(0, 3))
             .catch((error) => console.log(error.message));
+    }
+    getScore(id){
+        const sql = `SELECT score FROM game WHERE user_id=${id};`
+        return queryAsync(sql)
+        .then(result => result[0])
+        .catch(e => console.log(e.message))
     }
 }

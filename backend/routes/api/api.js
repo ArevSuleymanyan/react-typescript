@@ -32,12 +32,13 @@ router.get('/user', async (req, res) => {
 
 router.get('/game', async (req, res) => {
     let id = req.userInfo.id;
-    let game = await gameService.getGameById(id);
+    const game = await gameService.getGameById(id);
     const players = await gameService.getTopPlayers();
-
+    const score = await gameService.getScore(id)
     res.json({
         players,
         board: game.game_board,
+        score,
     });
 });
 

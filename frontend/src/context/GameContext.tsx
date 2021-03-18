@@ -16,14 +16,20 @@ const gameService = new GameService();
 export const GameProvider = ({children}:Props) => {
     const [board, setBoard] = useState([]);
     const [players, setPlayers] = useState([]);
+    const [score , setScore] = useState(0)
     const changeBoard = (data:any) => {
         setBoard(data)
+    }
+    const changeScore = (scr:number) => {
+        setScore(scr)
     }
 
     useEffect(()=>{
         const getGameBoard = async () => { await gameService.getGameInfo().then(result => {
             setBoard(result.board)
             setPlayers(result.players)
+            setScore(result.score.score)
+            
         } )}
         getGameBoard();
     },[])
@@ -32,7 +38,9 @@ export const GameProvider = ({children}:Props) => {
         <GameContext.Provider value={{
             board,
             players,
-            changeBoard
+            score,
+            changeBoard,
+            changeScore,
         }} >
             {children}
         </GameContext.Provider>
