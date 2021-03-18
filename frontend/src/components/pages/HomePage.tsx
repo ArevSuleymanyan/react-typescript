@@ -7,7 +7,7 @@ export const HomePage: React.FC = () => {
 		return (
 			<div>
 				<h1 className="guest">
-					Welcome home page {user.name} !!!
+					Welcome home page {user.name.toUpperCase()} !!!
 				</h1>
 				<div id="background-wrap">
 					<div className="bubble x1"></div>

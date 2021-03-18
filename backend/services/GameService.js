@@ -39,7 +39,7 @@ export default class GameService extends BaseService {
     getScore(id){
         const sql = `SELECT score FROM game WHERE user_id=${id};`
         return queryAsync(sql)
-        .then(result => result[0])
+        .then(result => result[0].score)
         .catch(e => console.log(e.message))
     }
 }

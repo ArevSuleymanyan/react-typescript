@@ -13,7 +13,6 @@ const gameService = new GameService()
 export const GameBoard: React.FunctionComponent = () => {
 	let i: number = 0
 	const { board, score, changeScore } = useContext(GameContext)
-	console.log(score)
 	const { user } = useContext(UserContext)
 	const [color, setColor] = useState<string>('')
 	const [first, setFirst] = useState(-1)
@@ -25,11 +24,11 @@ export const GameBoard: React.FunctionComponent = () => {
 
 	const saveHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
 		await gameService.addBoard(user.id, board, score)
-		console.log('game saved')
 	}
 
-	const reloadHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-		console.log('reload')
+	const reloadHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
+		// const newBoard = linesLogic.board
+		// await gameService.addBoard(user.id, newBoard, 0);
 	}
 
 	const cellClick = (e: any) => {
@@ -44,9 +43,7 @@ export const GameBoard: React.FunctionComponent = () => {
 
 	if (color && second >= 0) {
 		linesLogic.moveTheColor(first, second, color, board)
-		if (score !== linesLogic.points) {
 			changeScore(linesLogic.points)
-		}
 	}
 
 	return (
