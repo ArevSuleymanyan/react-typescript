@@ -176,6 +176,21 @@ a {
 	background-size: 200px;
 	
 }
+.score-box{
+	display: flex;
+}
+.score {
+	text-align: center;
+	font-size: 22px;
+	color: white;
+	font-weight: bold;
+	background-color: darkslategray;
+	border-radius: 5px;
+	padding: 20px 5px;
+	box-shadow: 3px 10px 20px -3px #728a8d;
+	
+}
+
 .top-title{
 	margin-bottom: 10px;
 	text-align: center;
@@ -204,6 +219,7 @@ a {
 	color: rgb(255, 255, 255);background-color: darkslategrey;
 	padding: 2px 5px;
 	border-radius: 5px;
+	box-shadow: 3px 10px 20px -3px #728a8d;
 }
 
 .fas {

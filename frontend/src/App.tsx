@@ -10,6 +10,8 @@ import { GameBoard } from './components/game/GameBoard'
 import { AlertProvider } from './context/AlertContext'
 import { UserContext } from './context/UserContext'
 import { GameProvider } from './context/GameContext'
+
+
 const App: React.FC = () => {
 	const { user }: any = useContext(UserContext)
 

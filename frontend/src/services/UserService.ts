@@ -47,7 +47,6 @@ export default class UserService {
 		const requestOption: object = {
 			method: 'POST',
 			headers: {
-				// 'Content-Type': 'multipart/form-data',
 				'custom-token': token
 			},
 			body:file

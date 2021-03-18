@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import GameService from '../services/GameService';
 
-export const GameContext = React.createContext([]);
+type Props = {
+    children:React.ReactChild
+}
+interface GameProps {
+    board: object[],
+    players:object[],
+    changeBoard: (data:any) => void
+}
+
+export const GameContext = React.createContext<GameProps|{}>({});
 const gameService = new GameService();
-export const GameProvider = ({children}:any) => {
+
+export const GameProvider = ({children}:Props) => {
     const [board, setBoard] = useState([]);
     const [players, setPlayers] = useState([]);
     const changeBoard = (data:any) => {
@@ -17,6 +27,7 @@ export const GameProvider = ({children}:any) => {
         } )}
         getGameBoard();
     },[])
+    
     return (
         <GameContext.Provider value={{
             board,

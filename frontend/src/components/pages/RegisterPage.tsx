@@ -60,10 +60,10 @@ export const RegisterPage: React.FC = () => {
 		}
 	}
 
-	let namePlc = 'The name must be a minimum of 4 characters long and not start with a number.'
-	let emailPlc = 'The email field must be an email address.'
-	let passwordPlc = 'The password must be a minimum of four characters long.'
-	let confirmPassPlc = 'Please confirm the password.'
+	let namePlc:string = 'The name must be a minimum of 4 characters long and not start with a number.'
+	let emailPlc:string = 'The email field must be an email address.'
+	let passwordPlc:string = 'The password must be a minimum of four characters long.'
+	let confirmPassPlc:string = 'Please confirm the password.'
 	return (
 		<>
 			<form className='login-form mb-5 mt-5'>
