@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import UserService from '../services/UserService'
 
-export const UserContext = React.createContext({})
 
+type Props = {
+	children: React.ReactChild
+}
+interface UserProps {
+	user: object
+}
+
+
+export const UserContext = React.createContext({})
 const userService = new UserService()
-export const UserProvider = ({ children }: any) => {
+export const UserProvider = ({ children }: Props) => {
 	const [user, setUser] = useState({})
 	const [avatar, setAvatar] = useState('')
 	const changeUserContext = (data:object) => setUser(data)
