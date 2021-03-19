@@ -8,11 +8,15 @@ interface GameProps {
 	board: object[]
 	players: object[]
 	score: number
-	changeBoard: (data: object[]) => void
-	changeScore: (data: number) => void
+	changeBoard?: (data: object[]) => void
+	changeScore?: (data: number) => void
 }
 
-export const GameContext = React.createContext<GameProps | null>(null)
+export const GameContext = React.createContext<GameProps>({
+	board: [],
+	players: [],
+	score: 0
+})
 const gameService = new GameService()
 
 export const GameProvider = ({ children }: Props) => {

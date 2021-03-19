@@ -11,9 +11,8 @@ const linesLogic = new LinesLogic()
 const gameService = new GameService()
 
 export const GameBoard: React.FC = () => {
-	let i = 0
 	const { board, score, changeScore, changeBoard } = useContext(GameContext)
-	
+
 	const { user } = useContext(UserContext)
 
 	const [color, setColor] = useState<string>('')
@@ -21,7 +20,7 @@ export const GameBoard: React.FC = () => {
 	const [second, setSecond] = useState(-1)
 
 	useEffect(() => {
-		linesLogic.runGame(board)
+		if (board && board.length) linesLogic.runGame(board)
 	}, [])
 
 	const saveHandler = async () => {
@@ -56,8 +55,7 @@ export const GameBoard: React.FC = () => {
 				<GameScore score={score} />
 			</div>
 			<div className='board'>
-				{board.map((item: { color: string }) => {
-					i++
+				{board.map((item: { color: string }, i: number) => {
 					return <GameCell key={i} item={item} i={i} clickHandler={(e: any) => cellClick(e)} />
 				})}
 			</div>

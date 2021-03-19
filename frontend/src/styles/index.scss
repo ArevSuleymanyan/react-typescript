@@ -144,6 +144,10 @@ a {
 	font-weight: bold;
 	font-size: 30px;
 	color: rgb(13, 143, 175);
+	border: 1px rgba(128, 128, 128, 0.445) solid;
+	border-radius: 5px;
+	box-sizing: border-box;
+	box-shadow: 3px 10px 20px -3px #728a8d;
 }
 
 .btn-primary {
