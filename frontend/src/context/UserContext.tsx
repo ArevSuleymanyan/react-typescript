@@ -19,7 +19,7 @@ export const UserProvider = ({ children }: any) => {
 		}
 		userInfo()
 	}, [])
-
+	
 	return (
 		 <UserContext.Provider value={{
 			 user,

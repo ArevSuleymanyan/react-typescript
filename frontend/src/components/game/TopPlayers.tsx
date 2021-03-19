@@ -14,7 +14,7 @@ export const TopPlayers: React.FC = () => {
 						<li className='top-list' key={player.name + player.score}>
 							<span className='top-i'>{i}. &nbsp;</span>
 							<span className='top-name'>{player.name}</span>
-							<span className='top-score'>{player.score}</span>
+							<span className='top-score'>{player.score || 0}</span>
 						</li>
 					)
 				})}
