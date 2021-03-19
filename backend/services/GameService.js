@@ -27,7 +27,6 @@ export default class GameService extends BaseService {
         return queryAsync(sql, [data])
             .then(() => console.log('game saved'))
             .catch((e) => console.log(e.message));
-      
     }
     getTopPlayers() {
         const sql =
@@ -36,10 +35,10 @@ export default class GameService extends BaseService {
             .then((result) => result.slice(0, 3))
             .catch((error) => console.log(error.message));
     }
-    getScore(id){
-        const sql = `SELECT score FROM game WHERE user_id=${id};`
+    getScore(id) {
+        const sql = `SELECT score FROM game WHERE user_id=${id};`;
         return queryAsync(sql)
-        .then(result => result[0].score)
-        .catch(e => console.log(e.message))
+            .then((result) => result[0].score)
+            .catch((e) => console.log(e.message));
     }
 }

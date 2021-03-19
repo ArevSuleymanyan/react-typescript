@@ -133,9 +133,8 @@ a {
 	cursor: pointer;
 }
 .alert:hover {
-	background-color: rgb(10, 96, 117);
+	background-color: rgba(240, 13, 13, 0.274);
 	color: white;
-	font-size: 22px;
 	transition: 0.5s linear;
 }
 
@@ -157,6 +156,7 @@ a {
 	border: 1px solid grey;
 	margin-bottom: 20px;
 	width: 200px;
+	min-height: 200px;
 }
 
 .circle {
