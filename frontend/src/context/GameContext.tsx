@@ -7,18 +7,18 @@ type Props = {
 interface GameProps {
 	board: object[]
 	players: object[]
-    score: number
+	score: number
 	changeBoard: (data: object[]) => void
 	changeScore: (data: number) => void
 }
 
-export const GameContext = React.createContext<GameProps | {}>({})
+export const GameContext = React.createContext<GameProps | null>(null)
 const gameService = new GameService()
 
 export const GameProvider = ({ children }: Props) => {
-	const [board, setBoard] = useState([])
-	const [players, setPlayers] = useState([])
-	const [score, setScore] = useState(0)
+	const [board, setBoard] = useState<object[]>([])
+	const [players, setPlayers] = useState<object[]>([])
+	const [score, setScore] = useState<number>(0)
 
 	const changeScore = (scr: number) => {
 		setScore(scr)

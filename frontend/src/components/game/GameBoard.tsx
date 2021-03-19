@@ -10,9 +10,10 @@ import { UserContext } from '../../context/UserContext'
 const linesLogic = new LinesLogic()
 const gameService = new GameService()
 
-export const GameBoard: React.FunctionComponent = () => {
+export const GameBoard: React.FC = () => {
 	let i = 0
 	const { board, score, changeScore, changeBoard } = useContext(GameContext)
+	
 	const { user } = useContext(UserContext)
 
 	const [color, setColor] = useState<string>('')

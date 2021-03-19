@@ -7,8 +7,8 @@ const userService = new UserService()
 export const UserProvider = ({ children }: any) => {
 	const [user, setUser] = useState({})
 	const [avatar, setAvatar] = useState('')
-	const changeUserContext = (data:any) => setUser(data)
-	const changeAvatarContext = (data:any) => setAvatar(data)
+	const changeUserContext = (data:object) => setUser(data)
+	const changeAvatarContext = (data:string) => setAvatar(data)
 	useEffect(() => {
 		const userInfo = async () => {
 			await userService.getUserInfo().then((result) =>  { 
