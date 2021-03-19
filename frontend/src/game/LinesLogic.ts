@@ -26,6 +26,7 @@ export default class LinesLogic {
 			const r2 = Math.floor(Math.random() * board.length)
 			if (!board[r2].color) {
 				board[r2].color = this.colors[r1]
+				board[r2].number = -1
 				i += 1
 			}
 		}
