@@ -30,6 +30,7 @@ export const GameBoard: React.FC = () => {
 		linesLogic.resetData()
 		linesLogic.runGame(linesLogic.board)
 		changeBoard && changeBoard(linesLogic.board)
+		changeScore && changeScore(0)
 	}
 
 	const cellClick = (e: any) => {
