@@ -172,8 +172,8 @@ export default class LinesLogic {
 	moveTheColor(index1: number, index2: number, color: string, board: Array<{ color: string; number: number }>) {
 		this.checkStep(index1, 1, board)
 		if (board[index2].number > 0) {
-			const way = [index2]
-			const fastestWay: number[] = this.findFastestRoud(board, index2, board[index2].number, way)
+			const way: number[] = [index2]
+			const fastestWay:number[] = this.findFastestRoud(board, index2, board[index2].number, way)
 			fastestWay.reverse()
 
 			this.showAnimation(color, fastestWay, () => {
@@ -206,7 +206,7 @@ export default class LinesLogic {
 		}
 	}
 
-	findFastestRoud(board: Array<{ color: string; number: number }>, index: number, count: number, way: Array<number>) {
+	findFastestRoud(board: Array<{ color: string; number: number }>, index: number, count: number, way: number[]) {
 		if (index + 9 < 81 && count - board[index + 9].number === 1) {
 			way.push(index + 9)
 			this.findFastestRoud(board, index + 9, count - 1, way)

@@ -12,7 +12,6 @@ const gameService = new GameService()
 
 export const GameBoard: React.FC = () => {
 	const { board, score, changeScore, changeBoard } = useContext(GameContext)
-
 	const { user } = useContext(UserContext)
 
 	const [color, setColor] = useState<string>('')
@@ -24,13 +23,13 @@ export const GameBoard: React.FC = () => {
 	}, [])
 
 	const saveHandler = async () => {
-		await gameService.addBoard(user.id, board, score)
+		if(user && user.id) await gameService.addBoard(user.id, board, score)
 	}
 
 	const reloadHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
 		linesLogic.resetData()
 		linesLogic.runGame(linesLogic.board)
-		changeBoard(linesLogic.board)
+		changeBoard && changeBoard(linesLogic.board)
 	}
 
 	const cellClick = (e: any) => {
@@ -45,7 +44,7 @@ export const GameBoard: React.FC = () => {
 
 	if (color && second >= 0) {
 		linesLogic.moveTheColor(first, second, color, board)
-		changeScore(linesLogic.points)
+		changeScore && changeScore(linesLogic.points)
 	}
 
 	return (

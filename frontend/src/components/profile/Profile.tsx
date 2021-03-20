@@ -5,8 +5,8 @@ import { Image } from './Image'
 const userService = new UserService()
 
 export const Profile: React.FC = () => {
-	const [file, setFile] = useState<any>()
-	const { user, avatar, changeAvatarContext } = useContext(UserContext)
+	const [file, setFile] = useState<string>('')
+	const { user, avatar, changeAvatarContext } = useContext(UserContext);
 	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLFormElement>) => {
 		setFile(e.currentTarget.files[0])
 	}
@@ -14,9 +14,8 @@ export const Profile: React.FC = () => {
 		e.preventDefault()
 		const formData = new FormData()
 		formData.append('avatar', file)
-		if (user.id) {
-			formData.append('id', user.id)
-		}
+		formData.append('id', user.id)
+		
 		const pic = await userService.addPicture(formData)
 		changeAvatarContext && changeAvatarContext(pic.image)
 	}

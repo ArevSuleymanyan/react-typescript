@@ -6,7 +6,7 @@ type Props = {
 }
 interface UserProps {
 	user:{
-		id?: string
+		id?: number | any
 		name?: string
 		email?: string
 		password?: string

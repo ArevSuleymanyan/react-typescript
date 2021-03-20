@@ -14,7 +14,6 @@ import { GameProvider } from './context/GameContext'
 
 const App: React.FC = () => {
 	const { user }: any = useContext(UserContext)
-
 	const menu = [
 		{ title: 'LINES', id: 1, isLoggedIn: false, component: HomePage, path: '/' },
 		{ title: 'LOGIN', id: 2, isLoggedIn: false, component: LoginPage, path: '/login' },
