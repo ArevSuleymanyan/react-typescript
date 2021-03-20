@@ -6,17 +6,19 @@ const userService = new UserService()
 
 export const Profile: React.FC = () => {
 	const [file, setFile] = useState<any>()
-	const { user, avatar, changeAvatarContext }: any = useContext(UserContext)
-	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFile(e.target.files[0])
+	const { user, avatar, changeAvatarContext } = useContext(UserContext)
+	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLFormElement>) => {
+		setFile(e.currentTarget.files[0])
 	}
 	const onClickHandler = async (e: React.MouseEvent) => {
 		e.preventDefault()
 		const formData = new FormData()
 		formData.append('avatar', file)
-		formData.append('id', user.id)
+		if (user.id) {
+			formData.append('id', user.id)
+		}
 		const pic = await userService.addPicture(formData)
-		changeAvatarContext(pic.image)
+		changeAvatarContext && changeAvatarContext(pic.image)
 	}
 	const src = `http://localhost:3000/uploads/${avatar}`
 	return (

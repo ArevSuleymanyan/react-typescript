@@ -1,6 +1,10 @@
 import React from 'react';
 
-export const Image :React.FC<{}> = ({src}:string) => {
+type ImgProps = {
+    src: string
+}
+
+export const Image  = ({ src }:ImgProps) => {
     return (
         <img  src={src}/>
     )
