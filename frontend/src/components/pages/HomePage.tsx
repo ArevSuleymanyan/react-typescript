@@ -28,7 +28,7 @@ export const HomePage: React.FC = () => {
 
 	return (
 	<>
-		<div className='guest'>Pleace log in</div>
+		<div className='guest'>Pleace log in <i className="fas fa-sign-in-alt fa-lg"></i></div>
 		<div id="background-wrap">
 			<div className="bubble x1"></div>
 			<div className="bubble x2"></div>

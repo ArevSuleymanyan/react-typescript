@@ -12,6 +12,7 @@ export const Alert: React.FC<AlertProps> = ({ message }) => {
 	return (
 		<div className='alert alert-info' onClick={alert.toggle}>
 			<p className='center'>
+			<i className="icon fas fa-exclamation-triangle fa-lg"></i>
 				<strong>{message}</strong>
 			</p>
 		</div>

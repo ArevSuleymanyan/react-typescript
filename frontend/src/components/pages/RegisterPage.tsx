@@ -37,6 +37,13 @@ export const RegisterPage: React.FC = () => {
 			}
 			return
 		}
+		if (password.length < 4) {
+			if (!visible) {
+				setMesage('Password must be at least four characters')
+				toggle()
+			}
+			return
+		}
 		const data = await userService.register(name, email, password, confirmPassword)
 		if (!visible) {
 			setMesage(data.message)
@@ -53,6 +60,13 @@ export const RegisterPage: React.FC = () => {
 			if (!name || !email || !password || !confirmPassword) {
 				if (!visible) {
 					setMesage('Fill in all fields')
+					toggle()
+				}
+				return
+			}
+			if (password.length < 4) {
+				if (!visible) {
+					setMesage('Password must be at least four characters')
 					toggle()
 				}
 				return
@@ -75,7 +89,9 @@ export const RegisterPage: React.FC = () => {
 	return (
 		<>
 			<form className='login-form mb-5 mt-5'>
-				<div className='circle'></div>
+				<div className='circle'>
+					<i className='fas fa-gamepad fa-2x'></i>
+				</div>
 				<div className='mb-3'>
 					<label htmlFor='name' className='form-label'>
 						Name

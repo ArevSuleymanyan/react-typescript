@@ -42,7 +42,6 @@ export const LoginPage: React.FC = () => {
 			if (!visible) {
 				setMessage(userData.message)
 				toggle()
-				
 			}
 			return
 		}
@@ -55,7 +54,6 @@ export const LoginPage: React.FC = () => {
 				if (!visible) {
 					setMessage('Please provide an email and password')
 					toggle()
-					
 				}
 				return
 			}
@@ -63,10 +61,11 @@ export const LoginPage: React.FC = () => {
 			if (userData.token) {
 				LocalStorageService.setToken(userData.token)
 				userContext.changeUserContext(userData.user)
-				 history.push('/')
+				history.push('/')
 			} else {
 				if (!visible) {
 					setMessage(userData.message)
+					
 					toggle()
 				}
 				return
@@ -76,7 +75,9 @@ export const LoginPage: React.FC = () => {
 	return (
 		<>
 			<form className='login-form mb-5 mt-5'>
-				<div className="circle" ></div>
+				<div className='circle'>
+					<i className='fas fa-gamepad fa-2x'></i>
+				</div>
 				<div className='mb-3'>
 					<label htmlFor='email' className='form-label'>
 						Email address
