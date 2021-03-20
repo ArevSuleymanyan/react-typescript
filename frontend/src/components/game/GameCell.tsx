@@ -3,7 +3,7 @@ type Props = {
 	item: {
 		color: string
 	}
-	clickHandler: (e:any) => void
+	clickHandler: (e:React.MouseEvent) => void
 	i: number
 }
 

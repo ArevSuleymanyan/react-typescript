@@ -23,7 +23,7 @@ export const GameBoard: React.FC = () => {
 	}, [])
 
 	const saveHandler = async () => {
-		if(user && user.id) await gameService.addBoard(user.id, board, score)
+		if (user && user.id) await gameService.addBoard(user.id, board, score)
 	}
 
 	const reloadHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
