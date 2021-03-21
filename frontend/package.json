@@ -5,7 +5,6 @@
 	"main": "index.tsx",
 	"scripts": {
 		"start": "webpack-dev-server --open",
-		"dev": "webpack-dev-server --inspect --open",
 		"build": "webpack --config ./webpack.config.prod.js"
 	},
 	"keywords": [],

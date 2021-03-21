@@ -41,6 +41,9 @@ export const GameBoard: React.FC = () => {
 		} else if (color) {
 			setSecond((prev) => (prev = id))
 		}
+		console.log({
+			color, first, second
+		})
 	}
 
 	if (color && second >= 0) {
