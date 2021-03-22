@@ -22,6 +22,8 @@ export const GameBoard: React.FC = () => {
 		if (board && board.length) linesLogic.runGame(board)
 	}, [])
 
+	
+
 	const saveHandler = async () => {
 		if (user && user.id) await gameService.addBoard(user.id, board, score)
 	}
@@ -38,19 +40,21 @@ export const GameBoard: React.FC = () => {
 		if (e.target.classList.length > 1) {
 			setFirst((prev) => (prev = id))
 			setColor(e.target.classList[1])
-		} else if (color) {
+		}
+		
+		else if (color) {
 			setSecond((prev) => (prev = id))
 		}
 	}
 
 	if (color && second >= 0) {
-		linesLogic.moveTheColor(first, second, color, board);
+		linesLogic.moveTheColor(first, second, color, board)
 		// changeScore && changeScore(linesLogic.points)
 		setFirst(-1)
 		setSecond(-1)
 		setColor('')
+		
 	}
-
 	return (
 		<>
 			<div className='score-box'>
@@ -70,6 +74,7 @@ export const GameBoard: React.FC = () => {
 					RELOAD
 				</button>
 			</div>
+			
 		</>
 	)
 }

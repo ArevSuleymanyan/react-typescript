@@ -1,7 +1,7 @@
 export default class LinesLogic {
     constructor() {
         this.resetData();
-        this.colors = ['r', 'g', 'b', 'y', 'o'];
+        this.colors = ['red', 'green', 'blue', 'yellow', 'orange'];
     }
 
     resetData() {

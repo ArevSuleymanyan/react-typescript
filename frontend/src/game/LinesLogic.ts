@@ -45,11 +45,17 @@ export default class LinesLogic {
 
 	updateBoardColor(board: Array<{ color: string; number: number }>) {
 		const randomColors = this.getRandomColors()
-		
+		let emptyCells = []
+		for (let j = 0; j < board.length; j++) {
+			if (!board[j].color) {
+				emptyCells.push(j)
+			}
+		}
 
 		for (let i = 0; i < randomColors.length; ) {
 			const r = Math.floor(Math.random() * board.length)
 			if (!board[r].color) {
+				console.log(emptyCells)
 				board[r].color = randomColors[i]
 				board[r].number = -1
 				i += 1
@@ -169,7 +175,7 @@ export default class LinesLogic {
 		this.checkStep(index1, 1, board)
 		if (board[index2].number > 0) {
 			const way: number[] = [index2]
-			const fastestWay:number[] = this.findFastestRoud(board, index2, board[index2].number, way)
+			const fastestWay: number[] = this.findFastestRoud(board, index2, board[index2].number, way)
 			fastestWay.reverse()
 
 			this.showAnimation(color, fastestWay, () => {
@@ -195,7 +201,9 @@ export default class LinesLogic {
 			})
 
 			for (let i = 0; i < board.length; i += 1) {
+				
 				if (!board[i].color) {
+					console.log(i)
 					board[i].number = 0
 				}
 			}
