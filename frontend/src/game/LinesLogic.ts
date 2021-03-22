@@ -5,7 +5,7 @@ export default class LinesLogic {
 
 	constructor() {
 		this.resetData()
-		this.colors = ['r', 'g', 'b', 'y', 'o']
+		this.colors = ['red', 'green', 'blue', 'yellow', 'orange']
 		this.points = 0
 	}
 
@@ -45,25 +45,20 @@ export default class LinesLogic {
 
 	updateBoardColor(board: Array<{ color: string; number: number }>) {
 		const randomColors = this.getRandomColors()
-		const emptyCells = []
-		for (let j = 0; j < board.length; j += 1) {
-			if (!board[j].color) {
-				emptyCells.push(j)
-			}
-		}
+		
 
 		for (let i = 0; i < randomColors.length; ) {
-			const r = Math.floor(Math.random() * emptyCells.length)
-			if (!board[emptyCells[r]].color) {
-				board[emptyCells[r]].color = randomColors[i]
-				board[emptyCells[r]].number = -1
+			const r = Math.floor(Math.random() * board.length)
+			if (!board[r].color) {
+				board[r].color = randomColors[i]
+				board[r].number = -1
 				i += 1
 			}
 		}
 	}
 
 	checkColorsHorizontal(board: Array<{ color: string; number: number }>, n = 3) {
-		for (let i = 0; i < board.length - n; i += 1) {
+		for (let i = 0; i <= board.length - n; i += 1) {
 			if (board[i].color) {
 				let count = 0
 				for (let j = 0; j < n; j += 1) {
@@ -95,11 +90,11 @@ export default class LinesLogic {
 					}
 				}
 				if (count === n) {
+					this.points += 10 * n
 					for (let j = 0; j < n * 9; j += 9) {
 						board[i + j].color = ''
 						board[i + j].number = 0
 					}
-					this.points += 10 * n
 				}
 			}
 		}
@@ -115,11 +110,11 @@ export default class LinesLogic {
 					}
 				}
 				if (count === n) {
+					this.points += 10 * n
 					for (let j = 0; j < n * 10; j += 10) {
 						board[i + j].color = ''
 						board[i + j].number = 0
 					}
-					this.points += 10 * n
 				}
 			}
 		}
@@ -170,6 +165,7 @@ export default class LinesLogic {
 	}
 
 	moveTheColor(index1: number, index2: number, color: string, board: Array<{ color: string; number: number }>) {
+		// console.log(index1,index2,color)
 		this.checkStep(index1, 1, board)
 		if (board[index2].number > 0) {
 			const way: number[] = [index2]

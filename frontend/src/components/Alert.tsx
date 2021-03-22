@@ -8,7 +8,7 @@ interface AlertProps {
 export const Alert: React.FC<AlertProps> = ({ message }) => {
 	const alert: any = useAlert()
 	if (!alert.visible) return null
-
+	console.log(message)
 	return (
 		<div className='alert alert-info' onClick={alert.toggle}>
 			<p className='center'>

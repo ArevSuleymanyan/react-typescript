@@ -41,14 +41,14 @@ export const GameBoard: React.FC = () => {
 		} else if (color) {
 			setSecond((prev) => (prev = id))
 		}
-		console.log({
-			color, first, second
-		})
 	}
 
 	if (color && second >= 0) {
-		linesLogic.moveTheColor(first, second, color, board)
-		changeScore && changeScore(linesLogic.points)
+		linesLogic.moveTheColor(first, second, color, board);
+		// changeScore && changeScore(linesLogic.points)
+		setFirst(-1)
+		setSecond(-1)
+		setColor('')
 	}
 
 	return (
