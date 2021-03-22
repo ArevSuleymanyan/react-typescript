@@ -21,7 +21,7 @@ const App: React.FC = () => {
 		{ title: 'ABOUT', id: 4, isLoggedIn: false, component: About, path: '/about' },
 		{ title: 'PROFILE', id: 5, isLoggedIn: true, component: Profile, path: '/profile' },
 		{ title: 'GAME', id: 6, isLoggedIn: true, component: GameBoard, path: '/game' },
-		{ title: 'LOG OUT', id: 7, isLoggedIn: true, component: '', path: '/logout' }
+		{ title: 'LOG OUT', id: 7, isLoggedIn: true, component: '', path: '/' }
 	]
 	const currentMenu = menu.filter((item: any) => {
 		if (item.title === 'LINES') {

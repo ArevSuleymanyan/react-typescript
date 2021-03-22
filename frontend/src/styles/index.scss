@@ -62,12 +62,11 @@ a {
 }
 
 .about-content {
-	border: 1px rgb(221, 219, 219) solid;
-	padding: 50px 20px 100px;
+	background-color: rgba(163, 163, 163, 0.157);
 	border-radius: 10px;
 	margin-bottom: 20px;
-	box-shadow: 3px 10px 20px -3px #728a8d;
-	background-color: rgba(163, 163, 163, 0.157);
+	padding: 50px 20px 100px;
+	
 }
 .icon{
 	display: inline-block;
@@ -89,6 +88,8 @@ a {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	box-shadow: 3px 10px 20px -3px #728a8d;
+	padding: 20px 60px;
 }
 
 .board {
@@ -145,10 +146,12 @@ a {
 }
 
 .guest {
+	margin-top: 150px;
 	text-align: center;
 	font-weight: bold;
 	font-size: 30px;
 	color: rgb(13, 143, 175);
+	padding-bottom: 200px;
 	i {
 		cursor: default;
 	}
@@ -157,6 +160,19 @@ a {
 .btn-primary {
 	background-color: rgb(13, 143, 175);
 	border-color: rgb(13, 143, 175);
+	font-weight: bold;
+}
+
+.profile{
+	border-radius: 5px;
+	box-sizing: border-box;	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 10px 30px 50px;
+}
+ .info-section {
+	font-size: 18px;
 	font-weight: bold;
 }
 
@@ -240,15 +256,17 @@ a {
 }
 .btn-box {
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
+	min-width: 500px;
 }
 .btn-game {
 	font-weight: bold;
 	color: white;
+	margin: 2px;
 }
 
 .btn-game:hover {
-	color: black;
+	color: rgb(13, 145, 175);
 }
 //bubble animation//////////////////////////////////////
 #background-wrap {

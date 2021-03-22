@@ -15,7 +15,10 @@ export const Profile: React.FC = () => {
 	const onClickHandler = async (e: React.MouseEvent) => {
 		e.preventDefault()
 		const formData = new FormData()
-		if (!file) return
+		if (!file) {
+			setVisible(!visible)
+			return
+		}
 		formData.append('avatar', file)
 		formData.append('id', user.id)
 		const pic = await userService.addPicture(formData)
@@ -27,16 +30,23 @@ export const Profile: React.FC = () => {
 
 	return (
 		<div className='profile'>
-			<div className='profile-pic' onClick={visibilityClick}>
-				{avatar && <Image src={src} />}
+			<div className='img-section'>
+				<div className='profile-pic' onClick={visibilityClick}>
+					{avatar && <Image src={src} />}
+				</div>
+				<div>
+					<form className='mb-5'>
+						<input hidden={visible} className='select-file' type='file' name='avatar' onChange={onChangeHandler} />
+					</form>
+					<button className='btn btn-primary' onClick={onClickHandler}>
+						Upload
+					</button>
+				</div>
 			</div>
-			<div>
-				<form className='mb-5'>
-					<input hidden={visible} className='select-file' type='file' name='avatar' onChange={onChangeHandler} />
-				</form>
-				<button className='btn btn-primary' onClick={onClickHandler}>
-					Upload
-				</button>
+			<div className='info-section'>
+				<p>{user.name}</p>
+				<p>{user.email}</p>
+				
 			</div>
 		</div>
 	)
