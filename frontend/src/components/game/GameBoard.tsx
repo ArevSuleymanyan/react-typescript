@@ -15,15 +15,12 @@ export const GameBoard: React.FC = () => {
 	const { user } = useContext(UserContext)
 	const [color, setColor] = useState<string>('')
 	const [first, setFirst] = useState<number>(-1)
-	const [second, setSecond] = useState<number>(-1)
 
 	const saveHandler = async () => {
 		if (user && user.id) await gameService.addBoard(user.id, board, score)
-		
 	}
 
-	const reloadHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-		linesLogic.endGame = !linesLogic.endGame
+	const reloadHandler = () => {
 		linesLogic.resetData()
 		linesLogic.runGame(linesLogic.board)
 		changeBoard && changeBoard(linesLogic.board)
@@ -36,17 +33,11 @@ export const GameBoard: React.FC = () => {
 			setFirst((prev) => (prev = id))
 			setColor(e.target.classList[1])
 		} else if (color) {
-			setSecond((prev) => (prev = id))
+			linesLogic.moveTheColor(first, id, color, board)
+			if (linesLogic.points > score) {
+				changeScore && changeScore(linesLogic.points)
+			}
 		}
-		
-	}
-
-	if (color && second >= 0) {
-		linesLogic.moveTheColor(first, second, color, board)
-		// changeScore && changeScore(linesLogic.points)
-		setFirst(-1)
-		setSecond(-1)
-		setColor('')
 	}
 
 	return (
@@ -62,10 +53,10 @@ export const GameBoard: React.FC = () => {
 			</div>
 			<div className='btn-box mb-3'>
 				<button onClick={saveHandler} className='btn-game btn btn-success'>
-					SAVE
+				<i className="fas fa-save fa-lg"></i>
 				</button>
 				<button onClick={reloadHandler} className='btn-game btn btn-info'>
-					RELOAD
+				<i className="fas fa-sync-alt fa-lg"></i>
 				</button>
 			</div>
 		</>

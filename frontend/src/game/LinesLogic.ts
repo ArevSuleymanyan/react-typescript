@@ -62,7 +62,6 @@ export default class LinesLogic {
 				i += 1
 			}
 		}
-	
 	}
 
 	checkColorsHorizontal(board: Array<{ color: string; number: number }>, n = 3) {
@@ -134,12 +133,12 @@ export default class LinesLogic {
 						count += 1
 					}
 				}
-					if (count === n) {
-						for (let j = 0; j < n * 8; j += 8) {
-							board[i + j].color = ''
-							board[i + j].number = 0
-						}
+				if (count === n) {
+					for (let j = 0; j < n * 8; j += 8) {
+						board[i + j].color = ''
+						board[i + j].number = 0
 					}
+				}
 			}
 		}
 	}
@@ -147,14 +146,14 @@ export default class LinesLogic {
 	checkEndGame(board: Array<{ color: string; number: number }>) {
 		for (let i = 0; i < board.length; i += 1) {
 			if (!board[i].color) {
-				return false
+				return
 			}
 		}
-		return true
+		return false 
 	}
 
 	showAnimation(color: string, fastestWay: [], callback: any) {
-		const cellDuration = 160
+		const cellDuration = 150
 		let index = 0
 
 		const intervalId = setInterval(function () {
@@ -187,7 +186,6 @@ export default class LinesLogic {
 				this.checkColorsHorizontal(board)
 				this.checkColorsVertical(board)
 				this.checkColorsDiagonal(board)
-
 				this.updateBoardColor(board)
 
 				this.checkColorsHorizontal(board)

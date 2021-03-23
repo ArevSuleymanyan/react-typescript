@@ -93,7 +93,7 @@ a {
 }
 
 .board {
-	width: 440px;
+	width: 424px;
 	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
@@ -200,10 +200,12 @@ a {
 	box-shadow: 3px 10px 20px -3px #728a8d;
 	background-image: url('https://www.freeiconspng.com/thumbs/bubbles-png/water-bubbles-png-6.png');
 	background-size: 200px;
+
 }
 .score-box {
 	display: flex;
-	min-width: 500px;
+	justify-content: center;
+	min-width: 400px;
 }
 .score {
 	text-align: center;
@@ -257,7 +259,7 @@ a {
 .btn-box {
 	display: flex;
 	justify-content: center;
-	min-width: 500px;
+	min-width: 400px;
 }
 .btn-game {
 	font-weight: bold;

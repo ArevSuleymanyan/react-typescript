@@ -17,7 +17,6 @@ export default class UserService extends BaseService {
         return super.getItemList(this.table, this.column, email);
     }
 
-
     getUserByEmail(email) {
         return super.getItemList(this.table, this.column, email);
     }
@@ -28,7 +27,7 @@ export default class UserService extends BaseService {
             .then(() => console.log('user added'))
             .catch((error) => console.log(error));
     }
-    
+
     async savePicture(userId, picture) {
         const result = await super.getItemById('picture', 'user_id', userId);
         if (!result) {
