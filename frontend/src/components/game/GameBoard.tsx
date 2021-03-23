@@ -13,22 +13,17 @@ const gameService = new GameService()
 export const GameBoard: React.FC = () => {
 	const { board, score, changeScore, changeBoard } = useContext(GameContext)
 	const { user } = useContext(UserContext)
-
 	const [color, setColor] = useState<string>('')
-	const [first, setFirst] = useState(-1)
-	const [second, setSecond] = useState(-1)
-
-	useEffect(() => {
-		if (board && board.length) linesLogic.runGame(board)
-	}, [])
-
-	
+	const [first, setFirst] = useState<number>(-1)
+	const [second, setSecond] = useState<number>(-1)
 
 	const saveHandler = async () => {
 		if (user && user.id) await gameService.addBoard(user.id, board, score)
+		
 	}
 
 	const reloadHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+		linesLogic.endGame = !linesLogic.endGame
 		linesLogic.resetData()
 		linesLogic.runGame(linesLogic.board)
 		changeBoard && changeBoard(linesLogic.board)
@@ -40,11 +35,10 @@ export const GameBoard: React.FC = () => {
 		if (e.target.classList.length > 1) {
 			setFirst((prev) => (prev = id))
 			setColor(e.target.classList[1])
-		}
-		
-		else if (color) {
+		} else if (color) {
 			setSecond((prev) => (prev = id))
 		}
+		
 	}
 
 	if (color && second >= 0) {
@@ -53,8 +47,8 @@ export const GameBoard: React.FC = () => {
 		setFirst(-1)
 		setSecond(-1)
 		setColor('')
-		
 	}
+
 	return (
 		<>
 			<div className='score-box'>
@@ -66,7 +60,7 @@ export const GameBoard: React.FC = () => {
 					return <GameCell key={i} item={item} i={i} clickHandler={(e: any) => cellClick(e)} />
 				})}
 			</div>
-			<div className='btn-box'>
+			<div className='btn-box mb-3'>
 				<button onClick={saveHandler} className='btn-game btn btn-success'>
 					SAVE
 				</button>
@@ -74,7 +68,6 @@ export const GameBoard: React.FC = () => {
 					RELOAD
 				</button>
 			</div>
-			
 		</>
 	)
 }

@@ -77,6 +77,8 @@ async function register(req, res) {
     const user = await userService.getUserByEmail(email);
     const id = user[0].id;
     const board = linesLogic.board;
+    linesLogic.runGame(board);
+    console.log(board)
     gameService.addNewGame(id, board);
     res.json({
         message: 'User registered',

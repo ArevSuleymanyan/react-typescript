@@ -1,3 +1,5 @@
+import { Children } from 'react'
+
 export default class LinesLogic {
 	colors: string[]
 	board: any
@@ -55,12 +57,12 @@ export default class LinesLogic {
 		for (let i = 0; i < randomColors.length; ) {
 			const r = Math.floor(Math.random() * board.length)
 			if (!board[r].color) {
-				console.log(emptyCells)
 				board[r].color = randomColors[i]
 				board[r].number = -1
 				i += 1
 			}
 		}
+	
 	}
 
 	checkColorsHorizontal(board: Array<{ color: string; number: number }>, n = 3) {
@@ -108,7 +110,7 @@ export default class LinesLogic {
 
 	checkColorsDiagonal(board: Array<{ color: string; number: number }>, n = 3) {
 		for (let i = 0; i < board.length - (n - 1) * 10; i += 1) {
-			if (board[i].color) {
+			if (board[i].color && (i + 1) % 9 !== 0 && (i + 2) % 9 !== 0) {
 				let count = 0
 				for (let j = 0; j < n * 10; j += 10) {
 					if (board[i].color === board[i + j].color) {
@@ -124,20 +126,20 @@ export default class LinesLogic {
 				}
 			}
 		}
-		for (let i = 0; i < board.length - (n - 1) * 8; i += 1) {
-			if (board[i].color) {
+		for (let i = 0; i < board.length - (n - 1) * 9; i += 1) {
+			if (board[i].color && i % 9 !== 0 && (i - 1) % 9 !== 0) {
 				let count = 0
 				for (let j = 0; j < n * 8; j += 8) {
 					if (board[i].color === board[i + j].color) {
 						count += 1
 					}
 				}
-				if (count === n) {
-					for (let j = 0; j < n * 8; j += 8) {
-						board[i + j].color = ''
-						board[i + j].number = 0
+					if (count === n) {
+						for (let j = 0; j < n * 8; j += 8) {
+							board[i + j].color = ''
+							board[i + j].number = 0
+						}
 					}
-				}
 			}
 		}
 	}
@@ -171,7 +173,6 @@ export default class LinesLogic {
 	}
 
 	moveTheColor(index1: number, index2: number, color: string, board: Array<{ color: string; number: number }>) {
-		// console.log(index1,index2,color)
 		this.checkStep(index1, 1, board)
 		if (board[index2].number > 0) {
 			const way: number[] = [index2]
@@ -183,7 +184,12 @@ export default class LinesLogic {
 				board[index2].number = -1
 				board[index1].color = ''
 				board[index1].number = 0
+				this.checkColorsHorizontal(board)
+				this.checkColorsVertical(board)
+				this.checkColorsDiagonal(board)
+
 				this.updateBoardColor(board)
+
 				this.checkColorsHorizontal(board)
 				this.checkColorsVertical(board)
 				this.checkColorsDiagonal(board)
@@ -201,9 +207,7 @@ export default class LinesLogic {
 			})
 
 			for (let i = 0; i < board.length; i += 1) {
-				
 				if (!board[i].color) {
-					console.log(i)
 					board[i].number = 0
 				}
 			}
