@@ -1,5 +1,3 @@
-import { Children } from 'react'
-
 export default class LinesLogic {
 	colors: string[]
 	board: any
@@ -60,6 +58,7 @@ export default class LinesLogic {
 			}
 		}
 	}
+	
 	checkColor(board: Array<{ color: string; number: number }>, n = 3) {
 		this.checkColorsHorizontal(board)
 		this.checkColorsVertical(board)
