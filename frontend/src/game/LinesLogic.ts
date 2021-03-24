@@ -21,9 +21,9 @@ export default class LinesLogic {
 		}
 	}
 
-	runGame(board: Array<{ color: string; number: number }>) {
+	runGame(board: Array<{ color: string; number: number }>, n = 3) {
 		let i = 0
-		while (i < 3) {
+		while (i < n) {
 			const r1 = Math.floor(Math.random() * this.colors.length)
 			const r2 = Math.floor(Math.random() * board.length)
 			if (!board[r2].color) {
@@ -47,13 +47,6 @@ export default class LinesLogic {
 
 	updateBoardColor(board: Array<{ color: string; number: number }>) {
 		const randomColors = this.getRandomColors()
-		let emptyCells = []
-		for (let j = 0; j < board.length; j++) {
-			if (!board[j].color) {
-				emptyCells.push(j)
-			}
-		}
-
 		for (let i = 0; i < randomColors.length; ) {
 			const r = Math.floor(Math.random() * board.length)
 			if (!board[r].color) {
@@ -146,10 +139,10 @@ export default class LinesLogic {
 	checkEndGame(board: Array<{ color: string; number: number }>) {
 		for (let i = 0; i < board.length; i += 1) {
 			if (!board[i].color) {
-				return
+				return false
 			}
 		}
-		return false 
+		return true
 	}
 
 	showAnimation(color: string, fastestWay: [], callback: any) {
@@ -171,7 +164,13 @@ export default class LinesLogic {
 		}, cellDuration)
 	}
 
-	moveTheColor(index1: number, index2: number, color: string, board: Array<{ color: string; number: number }>) {
+	moveTheColor(
+		index1: number,
+		index2: number,
+		color: string,
+		board: Array<{ color: string; number: number }>,
+		callback: ()=>void
+	) {
 		this.checkStep(index1, 1, board)
 		if (board[index2].number > 0) {
 			const way: number[] = [index2]
@@ -187,7 +186,6 @@ export default class LinesLogic {
 				this.checkColorsVertical(board)
 				this.checkColorsDiagonal(board)
 				this.updateBoardColor(board)
-
 				this.checkColorsHorizontal(board)
 				this.checkColorsVertical(board)
 				this.checkColorsDiagonal(board)
@@ -202,6 +200,7 @@ export default class LinesLogic {
 						board[i].number = -1
 					}
 				}
+				callback()
 			})
 
 			for (let i = 0; i < board.length; i += 1) {

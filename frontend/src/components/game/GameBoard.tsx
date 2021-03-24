@@ -15,7 +15,7 @@ export const GameBoard: React.FC = () => {
 	const { user } = useContext(UserContext)
 	const [color, setColor] = useState<string>('')
 	const [first, setFirst] = useState<number>(-1)
-
+	linesLogic.points = score
 	const saveHandler = async () => {
 		if (user && user.id) await gameService.addBoard(user.id, board, score)
 	}
@@ -33,10 +33,13 @@ export const GameBoard: React.FC = () => {
 			setFirst((prev) => (prev = id))
 			setColor(e.target.classList[1])
 		} else if (color) {
-			linesLogic.moveTheColor(first, id, color, board)
-			if (linesLogic.points > score) {
-				changeScore && changeScore(linesLogic.points)
-			}
+			linesLogic.moveTheColor(first, id, color, board, () => {
+				changeScore && changeScore(linesLogic.points )
+				linesLogic.checkEndGame(board)
+			})
+
+			setColor('')
+			setFirst(-1)
 		}
 	}
 
@@ -53,10 +56,10 @@ export const GameBoard: React.FC = () => {
 			</div>
 			<div className='btn-box mb-3'>
 				<button onClick={saveHandler} className='btn-game btn btn-success'>
-				<i className="fas fa-save fa-lg"></i>
+					<i className='fas fa-save fa-lg'></i>
 				</button>
 				<button onClick={reloadHandler} className='btn-game btn btn-info'>
-				<i className="fas fa-sync-alt fa-lg"></i>
+					<i className='fas fa-sync-alt fa-lg'></i>
 				</button>
 			</div>
 		</>
