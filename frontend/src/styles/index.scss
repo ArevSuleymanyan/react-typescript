@@ -66,13 +66,11 @@ a {
 	border-radius: 10px;
 	margin-bottom: 20px;
 	padding: 50px 20px 100px;
-	
 }
-.icon{
+.icon {
 	display: inline-block;
 	margin-right: 10px;
 }
-
 
 .center {
 	display: flex;
@@ -140,7 +138,7 @@ a {
 	cursor: pointer;
 }
 .alert:hover {
-	.icon{
+	.icon {
 		color: maroon;
 	}
 }
@@ -163,15 +161,15 @@ a {
 	font-weight: bold;
 }
 
-.profile{
+.profile {
 	border-radius: 5px;
-	box-sizing: border-box;	
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	padding: 10px 30px 50px;
 }
- .info-section {
+.info-section {
 	font-size: 18px;
 	font-weight: bold;
 }
@@ -200,7 +198,6 @@ a {
 	box-shadow: 3px 10px 20px -3px #728a8d;
 	background-image: url('https://www.freeiconspng.com/thumbs/bubbles-png/water-bubbles-png-6.png');
 	background-size: 200px;
-
 }
 .line {
 	text-decoration: underline;
@@ -220,8 +217,6 @@ a {
 	padding: 20px 5px;
 	box-shadow: 3px 10px 20px -3px #728a8d;
 }
-
-
 
 .top-title {
 	margin-bottom: 10px;
@@ -273,6 +268,35 @@ a {
 .btn-game:hover {
 	color: rgb(13, 145, 175);
 }
+.popup {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.popup_open {
+	position: absolute;
+	left: 35%;
+	right: 35%;
+	top: 35%;
+	bottom: 35%;
+	margin: auto;
+	border-radius: 20px;
+	background-color: azure;
+	padding: 40px 33px 10px;
+}
+.game-over {
+	font-weight: bold;
+	font-size: 18px;
+	text-align: center;
+	margin-bottom: 40px;
+}
+
 //bubble animation//////////////////////////////////////
 #background-wrap {
 	bottom: 0;

@@ -11,6 +11,10 @@ export default class LinesLogic {
 		this.points = 0
 	}
 
+	setPoints(n: number) {
+		this.points += 10 * n
+	}
+
 	resetData() {
 		this.board = []
 		for (let i = 0; i < 81; i += 1) {
@@ -56,6 +60,11 @@ export default class LinesLogic {
 			}
 		}
 	}
+	checkColor(board: Array<{ color: string; number: number }>, n = 3) {
+		this.checkColorsHorizontal(board)
+		this.checkColorsVertical(board)
+		this.checkColorsDiagonal(board)
+	}
 
 	checkColorsHorizontal(board: Array<{ color: string; number: number }>, n = 3) {
 		for (let i = 0; i <= board.length - n; i += 1) {
@@ -70,7 +79,7 @@ export default class LinesLogic {
 					}
 				}
 				if (count === n) {
-					this.points += 10 * n
+					this.setPoints(n)
 					for (let j = 0; j < n; j += 1) {
 						board[i + j].color = ''
 						board[i + j].number = 0
@@ -90,7 +99,7 @@ export default class LinesLogic {
 					}
 				}
 				if (count === n) {
-					this.points += 10 * n
+					this.setPoints(n)
 					for (let j = 0; j < n * 9; j += 9) {
 						board[i + j].color = ''
 						board[i + j].number = 0
@@ -110,7 +119,7 @@ export default class LinesLogic {
 					}
 				}
 				if (count === n) {
-					this.points += 10 * n
+					this.setPoints(n)
 					for (let j = 0; j < n * 10; j += 10) {
 						board[i + j].color = ''
 						board[i + j].number = 0
@@ -127,6 +136,7 @@ export default class LinesLogic {
 					}
 				}
 				if (count === n) {
+					this.setPoints(n)
 					for (let j = 0; j < n * 8; j += 8) {
 						board[i + j].color = ''
 						board[i + j].number = 0
@@ -169,7 +179,7 @@ export default class LinesLogic {
 		index2: number,
 		color: string,
 		board: Array<{ color: string; number: number }>,
-		callback: ()=>void
+		callback: () => void
 	) {
 		this.checkStep(index1, 1, board)
 		if (board[index2].number > 0) {
@@ -182,13 +192,9 @@ export default class LinesLogic {
 				board[index2].number = -1
 				board[index1].color = ''
 				board[index1].number = 0
-				this.checkColorsHorizontal(board)
-				this.checkColorsVertical(board)
-				this.checkColorsDiagonal(board)
+				this.checkColor(board)
 				this.updateBoardColor(board)
-				this.checkColorsHorizontal(board)
-				this.checkColorsVertical(board)
-				this.checkColorsDiagonal(board)
+				this.checkColor(board)
 				for (let i = 0; i < board.length; i += 1) {
 					const item: any = document.getElementById(String(i))
 					const classNames = item.classList

@@ -6,6 +6,7 @@ import { GameScore } from './GameScore'
 import LinesLogic from '../../game/LinesLogic'
 import GameService from '../../services/GameService'
 import { UserContext } from '../../context/UserContext'
+import { Popup } from '../Popup'
 
 const linesLogic = new LinesLogic()
 const gameService = new GameService()
@@ -15,7 +16,13 @@ export const GameBoard: React.FC = () => {
 	const { user } = useContext(UserContext)
 	const [color, setColor] = useState<string>('')
 	const [first, setFirst] = useState<number>(-1)
+	const [endGame, setEndGame] = useState<boolean>(false)
 	linesLogic.points = score
+	const closeHandler = () =>{
+		setEndGame(prev => !prev)
+		reloadHandler()
+	} 
+
 	const saveHandler = async () => {
 		if (user && user.id) await gameService.addBoard(user.id, board, score)
 	}
@@ -35,7 +42,9 @@ export const GameBoard: React.FC = () => {
 		} else if (color) {
 			linesLogic.moveTheColor(first, id, color, board, () => {
 				changeScore && changeScore(linesLogic.points )
-				linesLogic.checkEndGame(board)
+				if(linesLogic.checkEndGame(board)){
+					setEndGame(prev => !prev)
+				}
 			})
 
 			setColor('')
@@ -62,6 +71,7 @@ export const GameBoard: React.FC = () => {
 					<i className='fas fa-sync-alt fa-lg'></i>
 				</button>
 			</div>
+			{endGame ? <Popup closeHandler={closeHandler} score={score}/> : null}
 		</>
 	)
 }
