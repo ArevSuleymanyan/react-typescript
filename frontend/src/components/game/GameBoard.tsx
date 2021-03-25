@@ -7,29 +7,28 @@ import LinesLogic from '../../game/LinesLogic'
 import GameService from '../../services/GameService'
 import { UserContext } from '../../context/UserContext'
 import { Popup } from '../Popup'
+import { GameLevel } from './GameLevel'
 
 const linesLogic = new LinesLogic()
 const gameService = new GameService()
 
 export const GameBoard: React.FC = () => {
-	const { board, score, changeScore, changeBoard } = useContext(GameContext)
+	const { board, score, players, level, changeScore, changeBoard } = useContext(GameContext)
 	const { user } = useContext(UserContext)
 	const [color, setColor] = useState<string>('')
 	const [first, setFirst] = useState<number>(-1)
 	const [endGame, setEndGame] = useState<boolean>(false)
 	linesLogic.points = score
-	const closeHandler = () =>{
-		setEndGame(prev => !prev)
+	const closeHandler = () => {
+		setEndGame((prev) => !prev)
 		reloadHandler()
-	} 
-	
+	}
 	const saveHandler = async () => {
 		if (user && user.id) await gameService.addBoard(user.id, board, score)
 	}
-
 	const reloadHandler = () => {
 		linesLogic.resetData()
-		linesLogic.runGame(linesLogic.board)
+		linesLogic.runGame(linesLogic.board, level)
 		changeBoard && changeBoard(linesLogic.board)
 		changeScore && changeScore(0)
 	}
@@ -40,10 +39,10 @@ export const GameBoard: React.FC = () => {
 			setFirst((prev) => (prev = id))
 			setColor(e.target.classList[1])
 		} else if (color) {
-			linesLogic.moveTheColor(first, id, color, board, () => {
-				changeScore && changeScore(linesLogic.points )
-				if(linesLogic.checkEndGame(board)){
-					setEndGame(prev => !prev)
+			linesLogic.moveTheColor(first, id, color, board,level, () => {
+				changeScore && changeScore(linesLogic.points)
+				if (linesLogic.checkEndGame(board)) {
+					setEndGame((prev) => !prev)
 				}
 			})
 
@@ -51,12 +50,12 @@ export const GameBoard: React.FC = () => {
 			setFirst(-1)
 		}
 	}
-
 	return (
 		<>
 			<div className='score-box'>
-				<TopPlayers />
+				<TopPlayers players={players} />
 				<GameScore score={score} />
+				<GameLevel/>
 			</div>
 			<div className='board'>
 				{board.map((item: { color: string }, i: number) => {
@@ -71,7 +70,7 @@ export const GameBoard: React.FC = () => {
 					<i className='fas fa-sync-alt fa-lg'></i>
 				</button>
 			</div>
-			{endGame ? <Popup closeHandler={closeHandler} score={score}/> : null}
+			{endGame ? <Popup closeHandler={closeHandler} score={score} /> : null}
 		</>
 	)
 }

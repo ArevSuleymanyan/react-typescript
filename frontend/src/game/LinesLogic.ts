@@ -49,7 +49,18 @@ export default class LinesLogic {
 
 	updateBoardColor(board: Array<{ color: string; number: number }>) {
 		const randomColors = this.getRandomColors()
-		for (let i = 0; i < randomColors.length; ) {
+		const emptyCells = [];
+		let length =  randomColors.length
+		if(emptyCells.length<3){
+			length = emptyCells.length
+		}
+		for (let i = 0; i < board.length; i++) {
+			if(!board[i].color){
+				emptyCells.push(i)
+			}
+		}
+		console.log("length:",length)
+		for (let i = 0; i < length; ) {
 			const r = Math.floor(Math.random() * board.length)
 			if (!board[r].color) {
 				board[r].color = randomColors[i]
@@ -58,11 +69,11 @@ export default class LinesLogic {
 			}
 		}
 	}
-	
+
 	checkColor(board: Array<{ color: string; number: number }>, n = 3) {
-		this.checkColorsHorizontal(board)
-		this.checkColorsVertical(board)
-		this.checkColorsDiagonal(board)
+		this.checkColorsHorizontal(board, n)
+		this.checkColorsVertical(board, n)
+		this.checkColorsDiagonal(board, n)
 	}
 
 	checkColorsHorizontal(board: Array<{ color: string; number: number }>, n = 3) {
@@ -178,6 +189,7 @@ export default class LinesLogic {
 		index2: number,
 		color: string,
 		board: Array<{ color: string; number: number }>,
+		n: number,
 		callback: () => void
 	) {
 		this.checkStep(index1, 1, board)
@@ -191,9 +203,9 @@ export default class LinesLogic {
 				board[index2].number = -1
 				board[index1].color = ''
 				board[index1].number = 0
-				this.checkColor(board)
+				this.checkColor(board, n)
 				this.updateBoardColor(board)
-				this.checkColor(board)
+				this.checkColor(board, n)
 				for (let i = 0; i < board.length; i += 1) {
 					const item: any = document.getElementById(String(i))
 					const classNames = item.classList
