@@ -72,7 +72,9 @@ export const RegisterPage: React.FC = () => {
 				return
 			}
 			const data = await userService.register(name, email, password, confirmPassword)
+			console.log(message)
 			if (!visible) {
+				setMesage(data.message)
 				if (data.message === 'User registered') {
 					history.push('/login')
 				} else {
@@ -81,7 +83,7 @@ export const RegisterPage: React.FC = () => {
 			}
 		}
 	}
-
+ 
 	let namePlc: string = 'The name must be a minimum of 4 characters long and not start with a number.'
 	let emailPlc: string = 'The email field must be an email address.'
 	let passwordPlc: string = 'The password must be a minimum of four characters long.'

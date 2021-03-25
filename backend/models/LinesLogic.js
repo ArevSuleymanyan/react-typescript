@@ -19,7 +19,7 @@ export default class LinesLogic {
         }
     }
 
-    runGame(board, n = 5) {
+    runGame(board, n = 3) {
         let i = 0;
         while (i < n) {
             let r1 = Math.floor(Math.random() * this.colors.length);
@@ -61,7 +61,7 @@ export default class LinesLogic {
         this.checkColorsDiagonal(board);
     }
 
-    checkColorsHorizontal(board, n = 5) {
+    checkColorsHorizontal(board, n = 3) {
         for (let i = 0; i < board.length - n; i += 1) {
             if (board[i].color) {
                 let count = 0;
@@ -84,7 +84,7 @@ export default class LinesLogic {
         }
     }
 
-    checkColorsVertical(board, n = 5) {
+    checkColorsVertical(board, n = 3) {
         for (let i = 0; i <= board.length - (n - 1) * 9; i += 1) {
             if (board[i].color) {
                 let count = 0;
@@ -104,7 +104,7 @@ export default class LinesLogic {
         }
     }
 
-    checkColorsDiagonal(board, n = 5) {
+    checkColorsDiagonal(board, n = 3) {
         for (let i = 0; i < board.length - (n - 1) * 10; i += 1) {
             if (board[i].color && (i + 1) % 9 !== 0 && (i + 2) % 9 !== 0) {
                 let count = 0;

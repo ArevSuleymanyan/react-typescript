@@ -31,7 +31,8 @@ export const Profile: React.FC = () => {
 	return (
 		<div className='profile'>
 			<div className='img-section'>
-				<div className='profile-pic' onClick={visibilityClick}>
+				<div className='profile-pic ' onClick={visibilityClick}>
+					{!avatar && <p className='mt-5 center'>Click to select a photo </p>}
 					{avatar && <Image src={src} />}
 				</div>
 				<div>
