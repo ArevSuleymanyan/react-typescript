@@ -22,7 +22,7 @@ export const GameBoard: React.FC = () => {
 		setEndGame(prev => !prev)
 		reloadHandler()
 	} 
-
+	
 	const saveHandler = async () => {
 		if (user && user.id) await gameService.addBoard(user.id, board, score)
 	}

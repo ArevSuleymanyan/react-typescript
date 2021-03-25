@@ -375,7 +375,7 @@ a {
 /* ANIMATIONS */
 
 .x1 {
-	background-color: chartreuse;
+	background-image:  linear-gradient(to left bottom, #50197a, #b0016f, #ec414f, #ff8d23, #ebd812);
 	-webkit-animation: animateBubble 25s linear infinite, sideWays 2s ease-in-out infinite alternate;
 	-moz-animation: animateBubble 25s linear infinite, sideWays 2s ease-in-out infinite alternate;
 	animation: animateBubble 25s linear infinite, sideWays 2s ease-in-out infinite alternate;
@@ -403,7 +403,7 @@ a {
 }
 
 .x3 {
-	background-color: orangered;
+	 background-image: linear-gradient(to left top, #d64e06, #e77400, #f39a00, #f9bf00, #fbe500);
 	-webkit-animation: animateBubble 28s linear infinite, sideWays 2s ease-in-out infinite alternate;
 	-moz-animation: animateBubble 28s linear infinite, sideWays 2s ease-in-out infinite alternate;
 	animation: animateBubble 28s linear infinite, sideWays 2s ease-in-out infinite alternate;
@@ -417,7 +417,7 @@ a {
 }
 
 .x4 {
-	background-color: teal;
+	background-image: radial-gradient(circle, #027e42, #469b3d, #7cb631, #b8cf1d, #fbe500);
 	-webkit-animation: animateBubble 22s linear infinite, sideWays 3s ease-in-out infinite alternate;
 	-moz-animation: animateBubble 22s linear infinite, sideWays 3s ease-in-out infinite alternate;
 	animation: animateBubble 22s linear infinite, sideWays 3s ease-in-out infinite alternate;
@@ -445,7 +445,7 @@ a {
 }
 
 .x6 {
-	background-color: indigo;
+	background-image: radial-gradient(circle, #f0dede, #eaaeac, #dd7e77, #c94e43, #ae0a0a);
 	-webkit-animation: animateBubble 21s linear infinite, sideWays 2s ease-in-out infinite alternate;
 	-moz-animation: animateBubble 21s linear infinite, sideWays 2s ease-in-out infinite alternate;
 	animation: animateBubble 21s linear infinite, sideWays 2s ease-in-out infinite alternate;
@@ -459,7 +459,7 @@ a {
 }
 
 .x7 {
-	background-color: green;
+	background-color: #FFC48C;
 	-webkit-animation: animateBubble 20s linear infinite, sideWays 2s ease-in-out infinite alternate;
 	-moz-animation: animateBubble 20s linear infinite, sideWays 2s ease-in-out infinite alternate;
 	animation: animateBubble 20s linear infinite, sideWays 2s ease-in-out infinite alternate;

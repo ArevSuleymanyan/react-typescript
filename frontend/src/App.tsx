@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect, useHistory, useLocation, Switch } from 'react-router-dom'
 import { Navbar } from './components/Navbar'
 import { LoginPage } from './components/pages/LoginPage'
 import { RegisterPage } from './components/pages/RegisterPage'
@@ -10,7 +10,7 @@ import { GameBoard } from './components/game/GameBoard'
 import { AlertProvider } from './context/AlertContext'
 import { UserContext } from './context/UserContext'
 import { GameProvider } from './context/GameContext'
-
+import { FourOhFour } from './components/pages/FourOhFour'
 
 const App: React.FC = () => {
 	const { user }: any = useContext(UserContext)
@@ -23,6 +23,7 @@ const App: React.FC = () => {
 		{ title: 'GAME', id: 6, isLoggedIn: true, component: GameBoard, path: '/game' },
 		{ title: 'LOG OUT', id: 7, isLoggedIn: true, component: '', path: '/' }
 	]
+
 	const currentMenu = menu.filter((item: any) => {
 		if (item.title === 'LINES') {
 			return item
@@ -40,11 +41,15 @@ const App: React.FC = () => {
 				<Router>
 					<Navbar menu={currentMenu} />
 					<div className='container'>
-						{currentMenu.map((item: any) => {
-							if (item.title === 'LINES')
-								return <Route key={item.id} exact path={item.path} component={item.component} />
-							return <Route key={item.id} path={item.path} component={item.component} />
-						})}
+						<Switch>
+							{currentMenu.map((item: any) => {
+								if (item.title === 'LINES') {
+									return <Route key={item.id} exact path={item.path} component={item.component} />
+								}
+								return <Route key={item.id} path={item.path} component={item.component} />
+							})}
+							<Route component={FourOhFour} />
+						</Switch>
 					</div>
 				</Router>
 			</AlertProvider>
