@@ -19,9 +19,9 @@ export default class LinesLogic {
         }
     }
 
-    runGame(board, n = 3) {
+    runGame(board) {
         let i = 0;
-        while (i < n) {
+        while (i < 3) {
             let r1 = Math.floor(Math.random() * this.colors.length);
             let r2 = Math.floor(Math.random() * board.length);
             if (!board[r2].color) {

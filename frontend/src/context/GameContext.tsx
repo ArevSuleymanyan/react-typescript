@@ -35,7 +35,6 @@ export const GameProvider = ({ children }: Props) => {
 		setBoard(data)
 	}
 	const changeLevel = (data: number) => {
-		console.log(data)
 		setLevel(data);
 	}
 	useEffect(() => {

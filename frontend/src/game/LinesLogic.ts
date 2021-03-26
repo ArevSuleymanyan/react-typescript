@@ -1,6 +1,6 @@
 export default class LinesLogic {
 	colors: string[]
-	board: any
+	board!: {color:string, number: number}[]
 	points: number
 
 	constructor() {
@@ -8,11 +8,11 @@ export default class LinesLogic {
 		this.colors = ['red', 'green', 'blue', 'yellow', 'orange']
 		this.points = 0
 	}
-
+	
 	setPoints(n: number) {
 		this.points += 10 * n
 	}
-
+	
 	resetData() {
 		this.board = []
 		for (let i = 0; i < 81; i += 1) {
@@ -23,9 +23,9 @@ export default class LinesLogic {
 		}
 	}
 
-	runGame(board: Array<{ color: string; number: number }>, n = 3) {
+	runGame(board: Array<{ color: string; number: number }>, ) {
 		let i = 0
-		while (i < n) {
+		while (i < 3) {
 			const r1 = Math.floor(Math.random() * this.colors.length)
 			const r2 = Math.floor(Math.random() * board.length)
 			if (!board[r2].color) {
@@ -51,16 +51,18 @@ export default class LinesLogic {
 		const randomColors = this.getRandomColors()
 		const emptyCells = [];
 		let length =  randomColors.length
-		if(emptyCells.length<3){
-			length = emptyCells.length
-		}
+
 		for (let i = 0; i < board.length; i++) {
 			if(!board[i].color){
 				emptyCells.push(i)
 			}
 		}
-		console.log("length:",length)
+		if(emptyCells.length<3){
+			length = emptyCells.length
+		}
+		console.log('length: ', length)
 		for (let i = 0; i < length; ) {
+			
 			const r = Math.floor(Math.random() * board.length)
 			if (!board[r].color) {
 				board[r].color = randomColors[i]

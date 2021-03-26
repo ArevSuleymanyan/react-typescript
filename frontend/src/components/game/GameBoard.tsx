@@ -8,6 +8,8 @@ import GameService from '../../services/GameService'
 import { UserContext } from '../../context/UserContext'
 import { Popup } from '../Popup'
 import { GameLevel } from './GameLevel'
+import { Alert } from '../Alert'
+import { useAlert } from '../../context/AlertContext'
 
 const linesLogic = new LinesLogic()
 const gameService = new GameService()
@@ -18,17 +20,21 @@ export const GameBoard: React.FC = () => {
 	const [color, setColor] = useState<string>('')
 	const [first, setFirst] = useState<number>(-1)
 	const [endGame, setEndGame] = useState<boolean>(false)
+	const { toggle }:any  = useAlert()
+
 	linesLogic.points = score
 	const closeHandler = () => {
 		setEndGame((prev) => !prev)
 		reloadHandler()
 	}
 	const saveHandler = async () => {
-		if (user && user.id) await gameService.addBoard(user.id, board, score)
+		if (user && user.id) await gameService.addBoard(user.id, board, score);
+		toggle()
+
 	}
 	const reloadHandler = () => {
 		linesLogic.resetData()
-		linesLogic.runGame(linesLogic.board, level)
+		linesLogic.runGame(linesLogic.board)
 		changeBoard && changeBoard(linesLogic.board)
 		changeScore && changeScore(0)
 	}
@@ -45,7 +51,6 @@ export const GameBoard: React.FC = () => {
 					setEndGame((prev) => !prev)
 				}
 			})
-
 			setColor('')
 			setFirst(-1)
 		}
@@ -70,6 +75,7 @@ export const GameBoard: React.FC = () => {
 					<i className='fas fa-sync-alt fa-lg'></i>
 				</button>
 			</div>
+			<Alert message={'Game Saved'}/>
 			{endGame ? <Popup closeHandler={closeHandler} score={score} /> : null}
 		</>
 	)
