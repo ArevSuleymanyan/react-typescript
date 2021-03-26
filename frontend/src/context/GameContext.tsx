@@ -31,11 +31,12 @@ export const GameProvider = ({ children }: Props) => {
 	const changeScore = (scr: number) => {
 		setScore(scr)
 	}
-	const changeBoard = (data: any) => {
-		setBoard(data)
+	const changeBoard =  (data: any) => {
+		console.log('changeBoard-data: ', data)
+		 setBoard(data)
 	}
 	const changeLevel = (data: number) => {
-		setLevel(data);
+		setLevel(data)
 	}
 	useEffect(() => {
 		const getGameBoard = async () => {
@@ -47,7 +48,6 @@ export const GameProvider = ({ children }: Props) => {
 		}
 		getGameBoard()
 	}, [])
-
 	return (
 		<GameContext.Provider
 			value={{
@@ -57,7 +57,7 @@ export const GameProvider = ({ children }: Props) => {
 				level,
 				changeLevel,
 				changeBoard,
-				changeScore,
+				changeScore
 			}}
 		>
 			{children}

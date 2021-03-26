@@ -21,7 +21,6 @@ export const GameBoard: React.FC = () => {
 	const [first, setFirst] = useState<number>(-1)
 	const [endGame, setEndGame] = useState<boolean>(false)
 	const { toggle }:any  = useAlert()
-
 	linesLogic.points = score
 	const closeHandler = () => {
 		setEndGame((prev) => !prev)
@@ -32,7 +31,7 @@ export const GameBoard: React.FC = () => {
 		toggle()
 
 	}
-	const reloadHandler = () => {
+	const reloadHandler =  () => {
 		linesLogic.resetData()
 		linesLogic.runGame(linesLogic.board)
 		changeBoard && changeBoard(linesLogic.board)
@@ -41,9 +40,9 @@ export const GameBoard: React.FC = () => {
 
 	const cellClick = (e: any) => {
 		let id = Number(e.target.id)
-		if (e.target.classList.length > 1) {
+		if (board[id].color) {
 			setFirst((prev) => (prev = id))
-			setColor(e.target.classList[1])
+			setColor(board[id].color)
 		} else if (color) {
 			linesLogic.moveTheColor(first, id, color, board,level, () => {
 				changeScore && changeScore(linesLogic.points)
@@ -64,6 +63,7 @@ export const GameBoard: React.FC = () => {
 			</div>
 			<div className='board'>
 				{board.map((item: { color: string }, i: number) => {
+					
 					return <GameCell key={i} item={item} i={i} clickHandler={(e: any) => cellClick(e)} />
 				})}
 			</div>

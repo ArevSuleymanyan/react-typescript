@@ -23,17 +23,19 @@ export default class LinesLogic {
 		}
 	}
 
-	runGame(board: Array<{ color: string; number: number }>, ) {
+	runGame(board: Array<{ color: string; number: number }> ) {
 		let i = 0
 		while (i < 3) {
 			const r1 = Math.floor(Math.random() * this.colors.length)
 			const r2 = Math.floor(Math.random() * board.length)
+			
 			if (!board[r2].color) {
 				board[r2].color = this.colors[r1]
 				board[r2].number = -1
 				i += 1
 			}
 		}
+		
 	}
 
 	getRandomColors() {
@@ -60,7 +62,6 @@ export default class LinesLogic {
 		if(emptyCells.length<3){
 			length = emptyCells.length
 		}
-		console.log('length: ', length)
 		for (let i = 0; i < length; ) {
 			
 			const r = Math.floor(Math.random() * board.length)
@@ -194,6 +195,7 @@ export default class LinesLogic {
 		n: number,
 		callback: () => void
 	) {
+		console.log({'1':index1, '2':index2, color, board,})
 		this.checkStep(index1, 1, board)
 		if (board[index2].number > 0) {
 			const way: number[] = [index2]

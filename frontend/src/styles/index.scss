@@ -136,6 +136,7 @@ a {
 }
 .alert {
 	cursor: pointer;
+	box-shadow: 3px 10px 20px -3px #80cab4;
 }
 .alert:hover {
 	.icon {
@@ -238,7 +239,7 @@ a {
 
 .top-name {
 	text-transform: uppercase;
-	width: 150px;
+	width: 120px;
 	display: inline-block;
 }
 .top-score {
