@@ -49,9 +49,9 @@ export const GameBoard: React.FC = () => {
 				if (linesLogic.checkEndGame(board)) {
 					setEndGame((prev) => !prev)
 				}
+				setColor('')
+				setFirst(-1)
 			})
-			setColor('')
-			setFirst(-1)
 		}
 	}
 	return (
