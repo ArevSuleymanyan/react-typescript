@@ -8,5 +8,5 @@ type Props = {
 }
 
 export const GameCell = ({ item, clickHandler, i }: Props) => {
-	return <div className={'cell ' + item.color} id ={`${i}`} onClick={clickHandler}>{i}</div>
+	return <div className={'cell ' + item.color} id ={`${i}`} onClick={clickHandler}></div>
 }
