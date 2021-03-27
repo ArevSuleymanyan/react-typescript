@@ -17,7 +17,7 @@ async function login(req, res) {
             message: 'Please provide an email and password',
         });
     }
-    const result = await userService.getUserByEmail(email);
+    const result = await userService.getMatchingEmail(email);
     if (
         !result.length ||
         !(await bcrypt.compare(password, result[0].password))
@@ -27,7 +27,8 @@ async function login(req, res) {
         });
     }
 
-    const id = result[0].id;
+    const id = result[0].user_id;
+    console.log(id)
     const token = jwt.sign({ id }, 'secret', {
         expiresIn: '90d',
     });
@@ -74,7 +75,7 @@ async function register(req, res) {
 
     const hashedPassword = await bcrypt.hash(password, 8);
     await userService.insertUserInDB(name, email, hashedPassword);
-    const user = await userService.getUserByEmail(email);
+    const user = await userService.getMatchingEmail(email);
     const id = user[0].id;
     const board = linesLogic.board;
     linesLogic.runGame(board);
@@ -90,7 +91,7 @@ async function addPicture(req, res) {
     }
     let id = req.body.id;
     let filename = req.file.filename;
-    const result = await userService.getItemById('picture', 'user_id', id);
+    const result = await userService.getItemById('picture', id);
     if (result) {
         unlink('.\\uploads\\' + result.image, (err) => {
             if (err) throw err;

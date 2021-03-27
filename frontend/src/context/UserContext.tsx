@@ -6,7 +6,7 @@ type Props = {
 }
 interface UserProps {
 	user:{
-		id?: number | any
+		user_id?: number | any
 		name?: string
 		email?: string
 		password?: string
@@ -31,6 +31,7 @@ export const UserProvider = ({ children }: Props) => {
 	useEffect(() => {
 		const userInfo = async () => {
 			await userService.getUserInfo().then((result) => {
+				console.log(result)
 				setUser(result.user)
 				setAvatar(result.avatar)
 			})

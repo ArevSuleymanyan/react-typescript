@@ -3,7 +3,7 @@ import { UserContext } from '../../context/UserContext'
 
 export const HomePage: React.FC = () => {
 	const {user}:any = useContext(UserContext);
-	if(user && user.id){
+	if(user && user.user_id){
 		return (
 			<div>
 				<h1 className="guest">

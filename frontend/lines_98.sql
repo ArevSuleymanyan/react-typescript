@@ -25,3 +25,5 @@ img_id int not null auto_increment primary key,
 image varchar(255),
 foreign key (user_id) references user(id)
 );
+
+ALTER TABLE users RENAME COLUMN id TO  user_id;

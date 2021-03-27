@@ -14,6 +14,7 @@ import { FourOhFour } from './components/pages/FourOhFour'
 
 const App: React.FC = () => {
 	const { user }: any = useContext(UserContext)
+	console.log(user )
 	const menu = [
 		{ title: 'LINES', id: 1, isLoggedIn: false, component: HomePage, path: '/' },
 		{ title: 'LOGIN', id: 2, isLoggedIn: false, component: LoginPage, path: '/login' },
@@ -21,14 +22,14 @@ const App: React.FC = () => {
 		{ title: 'ABOUT', id: 4, isLoggedIn: false, component: About, path: '/about' },
 		{ title: 'PROFILE', id: 5, isLoggedIn: true, component: Profile, path: '/profile' },
 		{ title: 'GAME', id: 6, isLoggedIn: true, component: GameBoard, path: '/game' },
-		{ title: 'LOG OUT', id: 7, isLoggedIn: true, component: '', path: '/' }
+		{ title: 'LOG OUT', id: 7, isLoggedIn: true, component: '', path: '/logout' }
 	]
 
 	const currentMenu = menu.filter((item: any) => {
 		if (item.title === 'LINES') {
 			return item
 		}
-		if (user && user.id) {
+		if (user && user.user_id) {
 			return item.isLoggedIn && item
 		} else {
 			return !item.isLoggedIn && item

@@ -10,16 +10,13 @@ export default class UserService extends BaseService {
         this.column = 'email';
     }
     getUserById(id) {
-        return super.getItemById(this.table, this.id, id);
+        return super.getItemById(this.table, id);
     }
 
     getMatchingEmail(email) {
         return super.getItemList(this.table, this.column, email);
     }
 
-    getUserByEmail(email) {
-        return super.getItemList(this.table, this.column, email);
-    }
 
     insertUserInDB(name, email, password) {
         const sql = 'INSERT INTO users SET ?';
@@ -29,7 +26,7 @@ export default class UserService extends BaseService {
     }
 
     async savePicture(userId, picture) {
-        const result = await super.getItemById('picture', 'user_id', userId);
+        const result = await super.getItemById('picture',userId);
         if (!result) {
             return super.addItemById('picture', 'image', userId, picture);
         } else {

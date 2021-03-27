@@ -27,9 +27,8 @@ export const GameBoard: React.FC = () => {
 		reloadHandler()
 	}
 	const saveHandler = async () => {
-		if (user && user.id) await gameService.addBoard(user.id, board, score);
+		if (user && user.user_id) await gameService.addBoard(user.user_id, board, score);
 		toggle()
-
 	}
 	const reloadHandler =  () => {
 		linesLogic.resetData()

@@ -195,7 +195,6 @@ export default class LinesLogic {
 		n: number,
 		callback: () => void
 	) {
-		console.log({'1':index1, '2':index2, color, board,})
 		this.checkStep(index1, 1, board)
 		if (board[index2].number > 0) {
 			const way: number[] = [index2]

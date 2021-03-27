@@ -2,15 +2,19 @@ import { connection } from '../database.js';
 const { queryAsync } = connection;
 
 export default class BaseService {
-    getItemById(table, column, id) {
-        const sql = `SELECT * FROM ${table} WHERE ${column}=${id}`;
-        return queryAsync(sql)
+    getItemById(table, id) {
+        const sql = `SELECT * FROM ${table} WHERE user_id = ?`;
+        return queryAsync(sql, [id])
             .then((result) => result[0])
             .catch((error) =>
                 console.log('BaseService:getItemById: ', error.message)
             );
     }
 
+
+
+
+    
     getItemList(table, column, email) {
         const sql = `SELECT * FROM ${table} WHERE ${column}=?`;
         return queryAsync(sql, [email])

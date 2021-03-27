@@ -32,12 +32,21 @@ export const GameProvider = ({ children }: Props) => {
 		setScore(scr)
 	}
 	const changeBoard =  (data: any) => {
-		console.log('changeBoard-data: ', data)
 		 setBoard(data)
 	}
 	const changeLevel = (data: number) => {
 		setLevel(data)
 	}
+
+	const changeTopPlayers = (pl:{name:string, score:number}[], nm:string, scr:number) => {
+		for (let i = 0; i < pl.length; i++) {
+			if(pl[i].name = nm){
+				pl[i].score = scr
+			}			
+		}
+		setPlayers(pl)
+	}
+
 	useEffect(() => {
 		const getGameBoard = async () => {
 			await gameService.getGameInfo().then((result) => {
@@ -57,7 +66,7 @@ export const GameProvider = ({ children }: Props) => {
 				level,
 				changeLevel,
 				changeBoard,
-				changeScore
+				changeScore,
 			}}
 		>
 			{children}

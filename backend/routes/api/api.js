@@ -21,10 +21,9 @@ router.post('/picture', upload.single('avatar'), addPicture);
 router.get('/user', async (req, res) => {
     const result = await userService.getItemById(
         'picture',
-        'user_id',
-        req.userInfo.id
+        req.userInfo.user_id
     );
-   
+
     let img = '';
     if (result) {
         img = result.image;
@@ -36,15 +35,16 @@ router.get('/user', async (req, res) => {
 });
 
 router.get('/game', async (req, res) => {
-    let id = req.userInfo.id;
+    let id = req.userInfo.user_id;
     const game = await gameService.getGameById(id);
     const players = await gameService.getTopPlayers();
-    const score = await gameService.getScore(id);
+    console.log(game)
     res.json({
         players,
         board: game.game_board,
-        score,
+        score:game.score,
     });
 });
+
 
 export default router;
