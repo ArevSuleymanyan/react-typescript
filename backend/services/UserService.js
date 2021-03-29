@@ -26,7 +26,7 @@ export default class UserService extends BaseService {
         if (!result) {
             return super.addItemById('picture', data);
         } else {
-            return super.updateItem('picture', 'image', userId, data);
+            return super.updateItem('picture', 'image', data);
         }
     }
 }

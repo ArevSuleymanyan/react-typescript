@@ -15,18 +15,18 @@ export default class GameService extends BaseService {
         return super.getItemById('game', id);
     }
 
-    addGameById(data) {  
+    addGameById(data) {
         return super.addItemById('game', data);
     }
 
-    updateGame(id, board, score) {
-        const data = JSON.stringify(board);
-        const sql = `UPDATE ${this.table} SET ${this.game_column}= ?, score=${score} WHERE user_id=${id}`;
+    updateGame(id, data) {
+        const sql = `UPDATE game SET ? WHERE user_id=${id}`;
 
         return queryAsync(sql, [data])
             .then(() => console.log('game saved'))
             .catch((e) => console.log(e.message));
     }
+
     getTopPlayers() {
         const sql =
             'select name,score from  game, users  where game.user_id = users.user_id order by score desc';

@@ -15,9 +15,7 @@ export default class BaseService {
         const sql = `SELECT * FROM ${table} WHERE ${column_name}=?`;
         return queryAsync(sql, [column_value])
             .then((result) => result)
-            .catch((error) =>
-                console.log( error.message)
-            );
+            .catch((error) => console.log(error.message));
     }
 
     addItemById(table, data) {
