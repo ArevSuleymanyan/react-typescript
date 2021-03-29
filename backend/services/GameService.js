@@ -15,9 +15,7 @@ export default class GameService extends BaseService {
         return super.getItemById('game', id);
     }
 
-    addGameById(data) {
-        
-        // const json = JSON.stringify(board);
+    addGameById(data) {  
         return super.addItemById('game', data);
     }
 

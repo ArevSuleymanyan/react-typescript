@@ -4,7 +4,7 @@ import UserService from '../services/UserService.js';
 import GameService from '../services/GameService.js';
 import LinesLogic from '../models/LinesLogic.js';
 import * as EmailValidator from 'email-validator';
-import { unlink } from 'fs';
+
 
 const userService = new UserService();
 const gameService = new GameService();
@@ -87,25 +87,6 @@ async function register(req, res) {
     });
 }
 
-async function addPicture(req, res) {
-    if (Number(req.body.id) !== Number(req.userInfo.user_id)) {
-        return res.status(404);
-    }
-    let id = req.body.id;
-    let filename = req.file.filename;
-    const result = await userService.getItemById('picture', id);
-    if (result) {
-            unlink('.\\uploads\\' + result.image, (err) => {
-            if (err) throw err;
-            console.log(`${result.image} deleted`);
-        });
-    }
-    
-    await userService.addPictureById(id, filename);
-    return res.json({
-        image: req.file.filename,
-        message: 'pic added',
-    });
-}
 
-export { login, register, addPicture };
+
+export { login, register };

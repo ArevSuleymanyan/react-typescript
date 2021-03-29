@@ -1,13 +1,10 @@
 import { Router } from 'express';
 import { addBoard } from '../../controllers/gameController.js';
-import {
-    login,
-    register,
-    addPicture,
-} from '../../controllers/authController.js';
+import { login, register } from '../../controllers/authController.js';
 import upload from '../../middlewere/upload.js';
 import GameService from '../../services/GameService.js';
 import UserService from '../../services/UserService.js';
+import { addPicture } from '../../controllers/picController.js';
 
 const router = new Router();
 const gameService = new GameService();
