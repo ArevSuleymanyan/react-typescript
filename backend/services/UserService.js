@@ -21,23 +21,12 @@ export default class UserService extends BaseService {
         return super.addItemById('users', data);
     }
 
-    addPictureById(userId, picture) {
-        const result = super.getItemById('picture', userId);
-        
+    async addPictureById(userId, data) {
+        const result = await super.getItemById('picture', userId);
+        if (!result) {
+            return super.addItemById('picture', data);
+        } else {
+            return super.updateItem('picture', 'image', userId, data);
+        }
     }
-
-    // async savePicture(userId, picture) {
-    //     const result = await super.getItemById('picture', userId);
-    //     if (!result) {
-    //         return super.addItemById('picture', 'image', userId, picture);
-    //     } else {
-    //         return super.updateItem(
-    //             'picture',
-    //             'image',
-    //             'user_id',
-    //             userId,
-    //             picture
-    //         );
-    //     }
-    // }
 }

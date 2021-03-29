@@ -18,7 +18,7 @@ async function addPicture(req, res) {
         });
     }
 
-    await userService.addPictureById(id, filename);
+    await userService.addPictureById(id, {user_id:id, image:filename });
     return res.json({
         image: req.file.filename,
         message: 'pic added',

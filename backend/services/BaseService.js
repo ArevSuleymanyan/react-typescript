@@ -28,7 +28,7 @@ export default class BaseService {
     }
 
     updateItem(table, column, column1, id, data) {
-        const sql = `UPDATE ${table} SET ${column}= ? WHERE ${column1}=${id}`;
+        const sql = `UPDATE ${table} SET user_id= ? WHERE ${column1}=${id}`;
         return queryAsync(sql, [data])
             .then(() => console.log('update'))
             .catch((error) => console.log(error));
