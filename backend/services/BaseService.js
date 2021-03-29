@@ -11,22 +11,18 @@ export default class BaseService {
             );
     }
 
-
-
-
-    
-    getItemList(table, column, email) {
-        const sql = `SELECT * FROM ${table} WHERE ${column}=?`;
-        return queryAsync(sql, [email])
+    getItemList(table, column_name, column_value) {
+        const sql = `SELECT * FROM ${table} WHERE ${column_name}=?`;
+        return queryAsync(sql, [column_value])
             .then((result) => result)
             .catch((error) =>
                 console.log('BaseService:getItemList: ', error.message)
             );
     }
 
-    addItemById(table, column, id, data) {
-        const sql = `INSERT ${table} (user_id,${column}) VALUES(?, ?)`;
-        return queryAsync(sql, [id, data])
+    addItemById(table, data) {
+        const sql = `INSERT INTO ${table} SET ?`;
+        return queryAsync(sql, data)
             .then(() => console.log(table + ' added'))
             .catch((e) => console.log(e.message));
     }

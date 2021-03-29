@@ -72,7 +72,6 @@ export const RegisterPage: React.FC = () => {
 				return
 			}
 			const data = await userService.register(name, email, password, confirmPassword)
-			console.log(message)
 			if (!visible) {
 				setMesage(data.message)
 				if (data.message === 'User registered') {

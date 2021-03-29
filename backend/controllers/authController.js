@@ -17,7 +17,7 @@ async function login(req, res) {
             message: 'Please provide an email and password',
         });
     }
-    const result = await userService.getMatchingEmail(email);
+    const result = await userService.getEmailList(email);
     if (
         !result.length ||
         !(await bcrypt.compare(password, result[0].password))
@@ -28,7 +28,6 @@ async function login(req, res) {
     }
 
     const id = result[0].user_id;
-    console.log(id)
     const token = jwt.sign({ id }, 'secret', {
         expiresIn: '90d',
     });
@@ -66,7 +65,7 @@ async function register(req, res) {
         });
     }
 
-    const result = await userService.getMatchingEmail(email);
+    const result = await userService.getEmailList(email);
     if (result.length > 0) {
         return res.json({
             message: 'That email is already in use',
@@ -74,32 +73,35 @@ async function register(req, res) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 8);
-    await userService.insertUserInDB(name, email, hashedPassword);
-    const user = await userService.getMatchingEmail(email);
-    const id = user[0].id;
+    await userService.addUserById({ name, email, password: hashedPassword });
+
+    const user = await userService.getEmailList(email);
+    const id = user[0].user_id;
+
     const board = linesLogic.board;
     linesLogic.runGame(board);
-    gameService.addNewGame(id, board);
+    let json = JSON.stringify(board);
+    gameService.addGameById({ user_id: id, game_board: json });
     res.json({
         message: 'User registered',
     });
 }
 
 async function addPicture(req, res) {
-    if (Number(req.body.id) !== Number(req.userInfo.id)) {
+    if (Number(req.body.id) !== Number(req.userInfo.user_id)) {
         return res.status(404);
     }
     let id = req.body.id;
     let filename = req.file.filename;
     const result = await userService.getItemById('picture', id);
     if (result) {
-        unlink('.\\uploads\\' + result.image, (err) => {
+            unlink('.\\uploads\\' + result.image, (err) => {
             if (err) throw err;
             console.log(`${result.image} deleted`);
         });
     }
-
-    await userService.savePicture(id, filename);
+    
+    await userService.addPictureById(id, filename);
     return res.json({
         image: req.file.filename,
         message: 'pic added',

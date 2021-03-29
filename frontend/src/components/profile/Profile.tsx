@@ -20,7 +20,7 @@ export const Profile: React.FC = () => {
 			return
 		}
 		formData.append('avatar', file)
-		formData.append('id', user.id)
+		formData.append('id', user.user_id)
 		const pic = await userService.addPicture(formData)
 		changeAvatarContext && changeAvatarContext(pic.image)
 		setVisible(!visible)
@@ -47,7 +47,6 @@ export const Profile: React.FC = () => {
 			<div className='info-section'>
 				<p>{user.name}</p>
 				<p>{user.email}</p>
-				
 			</div>
 		</div>
 	)

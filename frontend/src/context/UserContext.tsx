@@ -31,7 +31,7 @@ export const UserProvider = ({ children }: Props) => {
 	useEffect(() => {
 		const userInfo = async () => {
 			await userService.getUserInfo().then((result) => {
-				console.log(result)
+				console.log('userContext:', result)
 				setUser(result.user)
 				setAvatar(result.avatar)
 			})

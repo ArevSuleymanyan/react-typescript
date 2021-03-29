@@ -10,19 +10,15 @@ export default class UserService extends BaseService {
         this.column = 'email';
     }
     getUserById(id) {
-        return super.getItemById(this.table, id);
+        return super.getItemById('users', id);
     }
 
-    getMatchingEmail(email) {
-        return super.getItemList(this.table, this.column, email);
+    getEmailList(email) {
+        return super.getItemList('users', 'email', email);
     }
 
-
-    insertUserInDB(name, email, password) {
-        const sql = 'INSERT INTO users SET ?';
-        return queryAsync(sql, { name, email, password })
-            .then(() => console.log('user added'))
-            .catch((error) => console.log(error));
+    addUserById(data) {
+        return super.addItemById('users', data);
     }
 
     async savePicture(userId, picture) {

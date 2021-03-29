@@ -12,12 +12,13 @@ export default class GameService extends BaseService {
     }
 
     getGameById(id) {
-        return super.getItemById(this.table, id);
+        return super.getItemById('game', id);
     }
-    
-    addNewGame(id, board) {
-        const json = JSON.stringify(board);
-        return super.addItemById(this.table, this.game_column, id, json);
+
+    addGameById(data) {
+        
+        // const json = JSON.stringify(board);
+        return super.addItemById('game', data);
     }
 
     updateGame(id, board, score) {
@@ -35,5 +36,4 @@ export default class GameService extends BaseService {
             .then((result) => result.slice(0, 3))
             .catch((error) => console.log(error.message));
     }
-   
 }
