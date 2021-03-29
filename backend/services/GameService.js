@@ -21,7 +21,7 @@ export default class GameService extends BaseService {
 
     updateGame(id, board, score) {
         const data = JSON.stringify(board);
-        const sql = `UPDATE ${this.table} SET ${this.game_column}= ?, score=${score} WHERE ${this.id}=${id}`;
+        const sql = `UPDATE ${this.table} SET ${this.game_column}= ?, score=${score} WHERE user_id=${id}`;
 
         return queryAsync(sql, [data])
             .then(() => console.log('game saved'))

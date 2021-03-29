@@ -16,7 +16,7 @@ export default class BaseService {
         return queryAsync(sql, [column_value])
             .then((result) => result)
             .catch((error) =>
-                console.log('BaseService:getItemList: ', error.message)
+                console.log( error.message)
             );
     }
 
@@ -27,8 +27,8 @@ export default class BaseService {
             .catch((e) => console.log(e.message));
     }
 
-    updateItem(table, column, column1, id, data) {
-        const sql = `UPDATE ${table} SET user_id= ? WHERE ${column1}=${id}`;
+    updateItem(table, column, data) {
+        const sql = `UPDATE ${table} SET ${column}=? WHERE user_id=?`;
         return queryAsync(sql, [data])
             .then(() => console.log('update'))
             .catch((error) => console.log(error));
